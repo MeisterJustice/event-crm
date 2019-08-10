@@ -4,7 +4,9 @@ import Event from '../models/event';
 
 export const getAdmin = async(req, res, next) => {
     let getUsers = await User.find({});
-    res.json(getUsers);
+    let getBlogs = await Blog.find({});
+    let getEvents = await Event.find({});
+    res.render("admin/index", {getUsers, getBlogs, getEvents});
 }
 
 export const getCreateBlog = async(req, res, next) => {

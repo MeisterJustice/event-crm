@@ -31,11 +31,15 @@ export const postRegister = async (req, res, next) => {
   });
   await User.register(newUser, req.body.password);
   // req.flash("success", "welcome");
-    res.json({newUser});
+  res.json({
+    newUser
+  });
 }
 
 export const getLogin = async (req, res, next) => {
-  res.json({message: 'get login'});
+  res.json({
+    message: 'get login'
+  });
 }
 
 export const postLogin = async (req, res, next) => passport.authenticate("local", {
@@ -43,7 +47,7 @@ export const postLogin = async (req, res, next) => passport.authenticate("local"
   failureRedirect: "/login"
 })(req, res, next)
 
-export const getLogout = async(req, res, next) => {
+export const getLogout = async (req, res, next) => {
   req.logout();
   // req.flash("success", "Logged you out!");
   res.redirect("/");

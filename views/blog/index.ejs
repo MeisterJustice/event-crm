@@ -1,0 +1,18 @@
+<h1>blog index</h1>
+
+<% findBlog.forEach((blog) => { %>
+    <div>
+        <div>
+            <h2><%= blog.title %></h2>
+        </div>
+        <div>
+            <p><%= blog.description %></p>
+        </div>
+        <div>
+            <img src="<%= blog.image %>" alt="image">
+        </div>
+        <div>
+            <a href="/blog/<%=blog.id%>">see more</a>
+        </div>
+    </div>
+<% }) %>

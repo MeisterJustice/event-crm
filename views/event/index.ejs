@@ -1,0 +1,29 @@
+<h1>event index</h1>
+<small>
+    <a href="/event/new">create new eventS</a>
+</small>
+
+<% findEvent.forEach((event) => { %>
+    <div>
+        <div>
+            <h2><%= event.title %></h2>
+        </div>
+        <div>
+            <p><%= event.description %></p>
+        </div>
+        <div>
+            <p><%= event.city %></p>
+        </div>
+        <div>
+            <p><%= event.venue %></p>
+        </div>
+        <% event.images.forEach((image) => { %>
+            <div>
+                <img src="<%= image %>" alt="image">
+            </div>
+        <%})%>
+        <div>
+            <a href="/event/<%=event.id%>">see more</a>
+        </div>
+    </div>
+<% }) %>

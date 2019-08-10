@@ -1,0 +1,38 @@
+<div>
+    <h1>users registered</h1>
+    <div>
+        <% getUsers.forEach((user) => { %>
+        <div>
+            <div>
+                <h3>username: <%= user.username %></h3>
+            </div>
+            <div>
+                <h3>name: <%= user.firstName %> <%= user.lastName %></h3>
+            </div>
+            <div>
+                <h3>sex: <%= user.sex %></h3>
+            </div>
+            <div>
+                <h3>email: <%= user.email %></h3>
+            </div>
+        </div>
+        <hr>
+        <hr>
+        <% }) %>
+    </div>
+    <div>
+        <h2>registered from facebook</h2>
+        <% getUsers.forEach((user) => { %>
+        <div>
+            <div>
+                <h3>name: <%= user.facebook.name %></h3>
+            </div>
+            <div>
+                <h3>email: <%= user.facebook.email %></h3>
+            </div>
+        </div>
+        <hr>
+        <hr>
+        <% }) %>
+    </div>
+</div>
