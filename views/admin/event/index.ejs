@@ -1,0 +1,33 @@
+<h3>
+    <a href="/admin/event/new">new event post</a>
+</h3>
+
+<div>
+    <% events.forEach((event) => { %>
+    <div>
+        <%=event.title%>
+    </div>
+    <div>
+        <%=event.description%>
+    </div>
+    <div>
+        <%=event.city%>
+    </div>
+    <div>
+        <%=event.venue%>
+    </div>
+
+    <div>
+        <img src="<%=event.images%>" alt="">
+    </div>
+    <div>
+        <%=event.dateCreated%>
+    </div>
+    <a href="/admin/event/<%=event.id%>/edit">edit</a>
+    <form action="/admin/event/<%=event.id%>?_method=DELETE" method="post">
+        <button>delete</button>
+    </form>
+    <br>
+    <br>
+    <% }) %>
+</div>

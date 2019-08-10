@@ -2,15 +2,19 @@ const express = require('express');
 const router = express.Router();
 
 import {
-  getAdmin, getCreateBlog, postBlog, getCreateEvent, postEvent, getEditBlog, putBlog, deleteBlog, getEditEvent, putEvent, deleteEvent
+  getAdmin, getBlog, getCreateBlog, postBlog, getEvent, getCreateEvent, postEvent, getEditBlog, putBlog, deleteBlog, getEditEvent, putEvent, deleteEvent
 } from '../controllers/admin'
 import { errorHandler } from '../middleware';
 
 router.get('/', errorHandler(getAdmin));
 
+router.get("/blog", errorHandler(getBlog));
+
 router.get('/blog/new', errorHandler(getCreateBlog));
 
 router.post('/blog', errorHandler(postBlog));
+
+router.get("/event", errorHandler(getEvent));
 
 router.get('/event/new', errorHandler(getCreateEvent));
 

@@ -11,14 +11,12 @@ export const getFacebookLogin = passport.authenticate('facebook', {
 
 export const postFacebookLogin = passport.authenticate('facebook', {
   successRedirect: '/',
-  failureRedirect: '/',
+  failureRedirect: '/login',
   session: false
 })
 
 export const getRegister = async (req, res, next) => {
-  res.json({
-    message: 'get register'
-  })
+  res.render("auth/register");
 }
 
 export const postRegister = async (req, res, next) => {
@@ -31,15 +29,11 @@ export const postRegister = async (req, res, next) => {
   });
   await User.register(newUser, req.body.password);
   // req.flash("success", "welcome");
-  res.json({
-    newUser
-  });
+  res.redirect("/event");
 }
 
 export const getLogin = async (req, res, next) => {
-  res.json({
-    message: 'get login'
-  });
+  res.render("auth/login");
 }
 
 export const postLogin = async (req, res, next) => passport.authenticate("local", {

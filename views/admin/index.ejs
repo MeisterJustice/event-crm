@@ -1,4 +1,8 @@
 <div>
+    <small>
+        <a href="/admin/event">see events</a>
+        <a href="/admin/blog">see blogs</a>
+    </small>
     <h1>users registered</h1>
     <div>
         <% getUsers.forEach((user) => { %>
@@ -14,21 +18,6 @@
             </div>
             <div>
                 <h3>email: <%= user.email %></h3>
-            </div>
-        </div>
-        <hr>
-        <hr>
-        <% }) %>
-    </div>
-    <div>
-        <h2>registered from facebook</h2>
-        <% getUsers.forEach((user) => { %>
-        <div>
-            <div>
-                <h3>name: <%= user.facebook.name %></h3>
-            </div>
-            <div>
-                <h3>email: <%= user.facebook.email %></h3>
             </div>
         </div>
         <hr>

@@ -1,0 +1,24 @@
+<form action="/admin/event/<%=event.id%>?_method=PUT" method="post">
+    <div>
+        <label for="">title</label>
+        <input name="title" value="<%=event.title%>" type="text">
+    </div>
+    <div>
+        <label for="">description</label>
+        <textarea name="description" id="" cols="30" rows="10"><%=event.description%></textarea>
+    </div>
+    <div>
+        <label for="">city</label>
+        <input value="<%=event.city%>" name="city" type="text">
+    </div>
+    <div>
+        <label for="">venue</label>
+        <input value="<%=event.venue%>" name="venue" type="text">
+    </div>
+    <div>
+        <label for="">images</label>
+        <input value="<%=event.images%>" name="images" type="text">
+    </div>
+    <button>post</button>
+    
+</form>

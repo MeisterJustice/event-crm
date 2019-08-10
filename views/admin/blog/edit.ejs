@@ -1,0 +1,15 @@
+<form action="/admin/blog/<%=blog.id%>?_method=PUT" method="post">
+    <div>
+        <label for="">title</label>
+        <input value="<%=blog.title%>" type="text" name="title">
+    </div>
+    <div>
+        <label for="">description</label>
+        <textarea name="description" id="" cols="30" rows="10"><%=blog.description%></textarea>
+    </div>
+    <div>
+        <label for="">image</label>
+        <input value="<%=blog.image%>" type="text" name="image">
+    </div>
+    <button>post</button>
+</form>
