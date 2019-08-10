@@ -1,11 +1,11 @@
-export const getBlog = (req, res, next) => {
-    res.json({
-        message: "blog route"
-    });
+import Blog from '../models/blog';
+
+export const getBlog = async(req, res, next) => {
+    let findBlog = await Blog.find({});
+    res.json(findBlog);
 }
 
-export const showBlog = (req, res, next) => {
-    res.json({
-        message: "show blog"
-    })
+export const showBlog = async(req, res, next) => {
+    let blogShow = await Blog.findById(req.params.id);
+    res.json(blogShow);
 }

@@ -7,6 +7,10 @@ import mongoose from 'mongoose';
 import logger from 'morgan';
 import bodyParser from 'body-parser'; 
 import methodOverride from 'method-override';
+import passport from 'passport';
+import LocalStrategy from 'passport-local';
+
+import User from './models/user';
 
 // import routers
 import indexRouter from './routes/';
@@ -39,6 +43,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+// passpor config
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/local-passport')(passport);
+require('./config/facebook-passport')(passport);
+
 
 // configure routes
 app.use('/', indexRouter);
