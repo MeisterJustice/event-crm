@@ -1,13 +1,18 @@
+<% include ../partials/header %>
+
+
 <h1>blog show</h1>
 
+<div>
     <div>
-        <div>
-            <h2><%= blog.title %></h2>
-        </div>
-        <div>
-            <p><%= blog.description %></p>
-        </div>
-        <div>
-            <img src="<%= blog.image %>" alt="image">
-        </div>
+        <h2><%= blog.title %></h2>
     </div>
+    <div>
+        <p><%= blog.description %></p>
+    </div>
+    <div>
+        <img src="<%= blog.image %>" alt="image">
+    </div>
+</div>
+
+<% include ../partials/footer %>

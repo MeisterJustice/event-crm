@@ -1,26 +1,19 @@
+<% include ../partials/header %>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
 
-    <form action="/register" method="post">
-        <input type="text" placeholder="username" name="username">
-        <input type="password" placeholder="password" name="password">
-        <input type="text" placeholder="first name" name="firstName">
-        <input type="text" placeholder="last name" name="lastName">
-        <input type="text" placeholder="sex" name="sex">
-        <input type="text" placeholder="email" name="email">
-        <button>register</button>
-    </form>
+<form action="/register" method="post">
+    <input type="text" placeholder="username" name="username">
+    <input type="password" placeholder="password" name="password">
+    <input type="text" placeholder="first name" name="firstName">
+    <input type="text" placeholder="last name" name="lastName">
+    <input type="text" placeholder="sex" name="sex">
+    <input type="text" placeholder="email" name="email">
+    <button>register</button>
+</form>
 
-    <a href="/login">login</a>
-    <a href="/auth/facebook">login with fb</a>
-  <script src="/javascripts/index.js"></script>
-</body>
-</html>
+<a href="/login">login</a>
+<a href="/auth/facebook">login with fb</a>
+<script src="/javascripts/index.js"></script>
+
+
+<% include ../partials/footer %>
