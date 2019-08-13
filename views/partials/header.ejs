@@ -1,12 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
     <title>event-crm</title>
 </head>
+
 <body>
-    
+    <div class="se-pre-con"></div>
+    <section id="navbar" class="d-none d-lg-block">
+        <nav class="nav fixed-top px-5 nav-pills nav-justified">
+            <a class="nav-link shadow-sm" href="/">home</a>
+            <a class="nav-link shadow-sm" href="#">contact</a>
+            <a class="nav-link shadow-sm" href="#">about</a>
+            <a class="nav-link shadow-sm" href="/event">event</a>
+            <a class="nav-link shadow-sm" href="/blog">blog</a>
+            <a class="nav-link shadow-sm ml-auto" href="/register">register</a>
+            <a class="nav-link shadow-sm" href="/login">login</a>
+        </nav>
+    </section>
+
+    <div id="menu-bar" class="d-lg-none">
+        <div id="menu" onclick="onClickMenu()">
+            <div id="bar1" class="bar"></div>
+            <div id="bar2" class="bar"></div>
+            <div id="bar3" class="bar"></div>
+        </div>
+        <ul class="navv" id="nav">
+            <li><a href="/">home</a></li>
+            <li><a href="#">about</a></li>
+            <li><a href="#">contact</a></li>
+            <li><a href="/event">event</a></li>
+            <li><a href="/blog">blog</a></li>
+        </ul>
+    </div>
+    <div class="menu-bg d-lg-none" id="menu-bg"></div>
