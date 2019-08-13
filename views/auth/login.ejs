@@ -1,17 +1,102 @@
 <!DOCTYPE html>
-<% include ../partials/header %>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/auth.css">
+    <title>event-crm | login</title>
+</head>
+
+<body>
+
+    <section id="login">
+        <div class="row">
+            <div class="side d-none d-lg-block col-12 col-lg-6 ">
+                <div class="logo-div d-flex flex-column justify-content-center align-items-center">
+                    <div class="logo">
+                        e
+                    </div>
+                </div>
+                <div class="side-desc d-flex flex-column justify-content-start align-items-center">
+                    <div>
+                        <h1>continue our partnership </h1>
+                    </div>
+                    <div class="pt-3">
+                        <p>ever wondered how easy it would have been to plan that event?</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-lg-6 p-0">
+                <div class="side-nav d-none d-lg-block">
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">about</a>
+                        </li>
+                        <li class="nav-item">
+                                <a class="nav-link" href="#">contact</a>
+                            </li>
+                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="/blog">blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/event">event</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="side-r d-flex justify-content-center align-items-center">
+
+                    <div id="menu-bar" class="d-lg-none">
+                        <div id="menu" onclick="onClickMenu()">
+                            <div id="bar1" class="bar"></div>
+                            <div id="bar2" class="bar"></div>
+                            <div id="bar3" class="bar"></div>
+                        </div>
+                        <ul class="navv" id="nav">
+                            <li><a href="/">home</a></li>
+                            <li><a href="#">about</a></li>
+                            <li><a href="#">contact</a></li>
+                            <li><a href="/event">event</a></li>
+                            <li><a href="/blog">blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="menu-bg d-lg-none" id="menu-bg"></div>
 
 
-<form action="/login" method="post">
-    <input type="text" placeholder="username" name="username">
-    <input type="password" placeholder="password" name="password">
+                    <div class="login pt-5 pt-lg-0 d-flex justify-content-center align-items-center">
+                        <div></div>
+                        <form action="/login" method="POST">
+                            <h3 class="mb-5 display-5">member login</h3>
+                            <input type="email" name="email" placeholder="email">
+                            <input type="password" name="password" placeholder="password">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="forgot">
+                                    <a class="a" href="/register">not registered?</a>
+                                </div>
+                                <div class="forgot">
+                                    <a class="a" href="#">forgot password?</a>
+                                </div>
+                            </div>
+                            <button class="login-btn">login</button>
+                            <small class="text-center">or</small>
+                            <a class="login-btn-fb" href="/auth/facebook">login with facebook</a>
 
-    <button>login</button>
-</form>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<a href="/register">register</a>
-<a href="/auth/facebook">login with fb</a>
-<script src="/javascripts/index.js"></script>
+    <script src="/javascripts/index.js"></script>
+</body>
 
-
-<% include ../partials/footer %>
+</html>

@@ -32,9 +32,10 @@ mongoose.connect('mongodb://localhost:27017/event-crm', {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, '/public')));
+
 app.use(methodOverride("_method"));
 
-app.use(express.static(path.join(__dirname, '/public')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -76,7 +77,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Set port
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 
 // Use mongoose promise library
 mongoose.Promise = require('bluebird');

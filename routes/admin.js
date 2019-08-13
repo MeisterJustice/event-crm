@@ -1,6 +1,5 @@
 const express = require('express');
-const router = express.Router();
-
+const router = express.Router({mergeParams: true});
 import {
   getAdmin, getBlog, getCreateBlog, postBlog, getEvent, getCreateEvent, postEvent, getEditBlog, putBlog, deleteBlog, getEditEvent, putEvent, deleteEvent
 } from '../controllers/admin'

@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 import { getEvent, getCreateEvent, postEvent, showEvent, getEdit, putEvent, deleteEvent } from '../controllers/event';
 import { errorHandler } from '../middleware';
 
