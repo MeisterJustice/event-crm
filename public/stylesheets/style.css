@@ -21,8 +21,15 @@ html, body {
     height: 60px;
     position: absolute;
     z-index: 999;
-    background-color: #15171f;
-    opacity: 0.7;
+    background-color: rgba(21, 23, 31, 0.6); 
+    border: none;   
+}
+
+nav.scrolled {
+    background-color: rgba(245, 144, 66, 0.65);
+    transition: all 2.5s;
+    height: 60px;
+    border: none; 
 }
 
 #navbar.sticky {
@@ -33,6 +40,7 @@ html, body {
     color: #fff;
     font-size: 25px;
     transition: .3s all ease-in;
+    border: none; 
 }
 
 .nav-link:hover, .nav-link:focus {
@@ -293,11 +301,6 @@ p {
 #about-bg-diagonal {
     width: 100%;
     height: 700px;
-    float: right;
-    background-image: url("/images/about.jpg");
-    background-size: cover;
-    background-position: center;
-    border-left: 200px solid #fff;
 }
 
 @media (max-width: 768px) {
@@ -306,6 +309,7 @@ p {
         float: center;
         border-left: 0 solid #fff;
         margin-top: -8em;
+        height: 200px;
     }
     #about-content-box {
         margin-top: -10em;
@@ -338,4 +342,68 @@ p {
 
 #about-desc p {
     margin-bottom: 30px;
+}
+
+/* ===============================================================================
+                                    EVENT
+================================================================================*/
+.event-row:hover {
+    text-decoration: none;
+}
+
+.event-op:hover, .event-op:focus {
+    opacity: 0.7;
+    transition: .3s all ease-in;
+}
+
+#event-section .event-row .card {
+    border-color: #f59042;
+}
+
+/* ===============================================================================
+                                    CREATE EVENT
+================================================================================*/
+#create-section {
+    background: #333;
+    color: #fff;
+    position: relative;
+    height: 370px;
+    border-top: none;
+}
+
+
+@media (max-width: 768px) {
+    #create-section {
+        height: 600px;
+    }
+  }
+
+#create-section h1 {
+    font-weight: bolder;
+}
+
+#create-section .world {
+    font-weight: bolder;
+}
+
+#create-section p {
+    color: #f4f4f4;
+}
+
+#create-section .span {
+    color: #fff;
+    font-weight: 500;
+}
+
+.btn-event {
+    border: 1px #f59042 solid;
+    border-radius: 20%;
+    color: #fff;
+    transition: .3s all ease-in;
+}
+
+.btn-event:hover {
+    color: #f59042;
+    background-color: #fff;
+    border: 1px #fff solid;
 }

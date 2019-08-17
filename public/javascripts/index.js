@@ -4,9 +4,7 @@ $(window).load(function() {
 	$(".se-pre-con").fadeOut("slow");;
 });
 
-//============================================================================
-//                                 SERVICES SECTION
-//============================================================================
+
 $(function() {
     // animate on scroll
     new WOW().init();
@@ -19,3 +17,11 @@ function onClickMenu(){
 	
 	document.getElementById("menu-bg").classList.toggle("change-bg");
 }
+
+// navbar 
+$(function () {
+	$(document).scroll(function () {
+		const $nav = $("nav");
+		$nav.toggleClass("scrolled", $(this).scrollTop() > $nav.height());
+	});
+});
