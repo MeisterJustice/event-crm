@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-import nodemailer from 'nodemailer';
-import xoauth2 from 'xoauth2';
+
 import {
   getIndex,
   getFacebookLogin,
@@ -10,7 +9,8 @@ import {
   postRegister,
   getLogin,
   postLogin,
-  getLogout
+  getLogout,
+  postForm
 } from '../controllers/index';
 
 import {
@@ -19,36 +19,7 @@ import {
 
 router.get('/', errorHandler(getIndex));
 
-router.post('/', function (req, res) {
-  let mailOpts, smtpTrans;
-  smtpTrans = nodemailer.createTransport({
-    service: 'gmail',
-    // port: 465,
-    // secure: true,
-    auth: {
-      xoauth2: xoauth2.createXOAuth2Generator({
-        user: 'thechiefje@gmail.com',
-        clientId: '',
-        clientSecret: '',
-        refreshToken: ''
-      })
-    }
-  });
-  mailOpts = {
-    from: req.body.name + ' &lt;' + req.body.email + '&gt;',
-    to: 'thechiefje@gmail.com',
-    subject: 'New message from contact form at event crm',
-    text: `${req.body.name} (${req.body.email}) says: ${req.body.message}`
-  };
-  smtpTrans.sendMail(mailOpts, function (error, response) {
-    if (error) {
-      console.log(error)
-    }
-    else {
-      console.log(response);
-    }
-  });
-});
+router.post('/', postForm);
 
 router.get('/auth/facebook', getFacebookLogin);
 

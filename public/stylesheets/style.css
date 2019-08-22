@@ -515,9 +515,9 @@ p {
     color: #34c6d3;
 }
 
-#footer3 form .input-full-width {
+/* #footer3 form .input-full-width {
     height: 60px;
-}
+} */
 
 #footer3 form input.form-control.input-full-width:focus {
     border-color: #fbfbfb !important;
