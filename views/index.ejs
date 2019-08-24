@@ -2,15 +2,26 @@
 
 <!-- HOME SECTION -->
 <section id="home">
-    <div id="home-cover" class="bg-parallax animated fadeIn">
-        <div id="home-content-box">
-            <div id="home-content-box-inner" class="text-center">
-                <div id="home-heading" class="animated zoomIn">
-                    <h3 class="shadow-sm">planning events can be easier!</h3>
+
+    <div class="video-container">
+        <div class="v">
+            <video playsinline autoplay muted loop id="bgvid">
+                <source src="/videos/landing.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="header">
+            <div class="d-flex flex-column align-items-center justify-content-between">
+                <div>
+                    <h1 class="text-center">planning events can be easier!</h1>
                 </div>
-                <div id="home-btn" class="animated zoomIn">
-                    <a class="btn btn-lg btn-general btn-white" href="#work" role="button" title="View Our Work">see
-                        events</a>
+                <div>
+                    <div class="d-md-inline d-block pr-md-3 pt-">
+                        <a class="btn mx-auto btn-lg btn-general btn-white" href="/event/new">create events</a>
+                    </div>
+                    <div class="d-md-inline d-block pl-md-3 pt- pt-lg-0">
+                        <a class="btn mx-auto btn-lg btn-general btn-white" href="/event">create events</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -165,7 +176,7 @@
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <img src="https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196__340.jpg" height="100%"
-                                class="card-img" alt="...">
+                                class="card-img lazy" alt="...">
                         </div>
                         <div class="col-md-8 cardd">
                             <div class="card-body">
@@ -187,7 +198,7 @@
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <img src="https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196__340.jpg" height="100%"
-                                class="card-img" alt="...">
+                                class="card-img lazy" alt="...">
                         </div>
                         <div class="col-md-8 cardd">
                             <div class="card-body">
@@ -209,7 +220,7 @@
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <img src="https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196__340.jpg" height="100%"
-                                class="card-img" alt="...">
+                                class="card-img lazy" alt="...">
                         </div>
                         <div class="col-md-8 cardd">
                             <div class="card-body">
@@ -231,7 +242,7 @@
                     <div class="row no-gutters">
                         <div class="col-md-4">
                             <img src="https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196__340.jpg" height="100%"
-                                class="card-img" alt="...">
+                                class="card-img lazy" alt="...">
                         </div>
                         <div class="col-md-8 cardd">
                             <div class="card-body">
@@ -246,7 +257,7 @@
                     </div>
                 </div>
             </a>
-        </div> 
+        </div>
     </div>
     <div class="text-left mt-2 container-fluid">
         <a class="btn btn-lg btn-general btn-blue ml-3" href="/event" role="button" title="Our Work">see more
@@ -337,12 +348,13 @@
                         </div>
                         <div class="form-group">
 
-                            <input name="phone" type="text" class="form-control" id="phone" placeholder="your phone number">
-                            
+                            <input name="phone" type="text" class="form-control" id="phone"
+                                placeholder="your phone number">
+
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="tell us what we can do for you, be explicit please" name="message" class="form-control" id="landing-form" rows="5"
-                                required></textarea>
+                            <textarea placeholder="tell us what we can do for you, be explicit please" name="message"
+                                class="form-control" id="landing-form" rows="5" required></textarea>
                             <div class="valid-feedback">
                                 looks good!
                             </div>
@@ -369,7 +381,9 @@
         <div>
             <div class="content-title-underline wow h fadeInDown" data-wow-duration="1s" data-wow-delay=".5s"></div>
         </div>
-        <p class="text-justify wow fadeInDown mx-auto text-center" data-wow-duration="1s" data-wow-delay=".5s">We’ve spent dozens of hours curating the best posts, tips, and guide out there for improving your event planning skills. Check out our guides below</p>
+        <p class="text-justify wow fadeInDown mx-auto text-center" data-wow-duration="1s" data-wow-delay=".5s">We’ve
+            spent dozens of hours curating the best posts, tips, and guide out there for improving your event planning
+            skills. Check out our guides below</p>
     </div>
     <div class="card-deck container-fluid mx-md-auto">
         <div class="card">
@@ -378,7 +392,7 @@
                     alt="Card image cap">
                 <div class="card-body">
                     <h4 class="card-title text-dark">blog title goes here</h4>
-                    
+
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </a>
@@ -389,7 +403,7 @@
                     alt="Card image cap">
                 <div class="card-body">
                     <h4 class="card-title text-dark">blog title goes here</h4>
-                    
+
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </a>
@@ -400,7 +414,7 @@
                     alt="Card image cap">
                 <div class="card-body">
                     <h4 class="card-title text-dark">blog title goes here</h4>
-                    
+
                     <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
                 </div>
             </a>

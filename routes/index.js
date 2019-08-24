@@ -10,7 +10,8 @@ import {
   getLogin,
   postLogin,
   getLogout,
-  postForm
+  postForm,
+  emailSignup
 } from '../controllers/index';
 
 import {
@@ -20,6 +21,8 @@ import {
 router.get('/', errorHandler(getIndex));
 
 router.post('/', postForm);
+
+router.post('/email-signup', errorHandler(emailSignup));
 
 router.get('/auth/facebook', getFacebookLogin);
 

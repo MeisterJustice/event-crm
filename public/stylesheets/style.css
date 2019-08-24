@@ -19,30 +19,45 @@ body {
 
 #navbar {
     width: 100%;
-    height: 60px;
+    height: 55px;
     position: absolute;
     z-index: 999;
-    background-color: rgba(21, 23, 31, 0.6);
+    background-color: transparent;
     border: none;
 }
 
 nav.scrolled {
-    background-color: rgba(245, 144, 66, 0.65);
-    transition: all 2.5s;
-    height: 60px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 8px 6px -4px #eeebeb;
+	-moz-box-shadow: 0 8px 6px -4px #eeebeb;
+	box-shadow: 0 8px 6px -4px #eeebeb;
+    transition: all 3s;
+    height: 55px;
+}
+
+nav.scrolled .nav-link {
+    color: #333 !important;
+    transition: .3s all ease-in;
+}
+
+nav.scrolled .nav-link:hover {
+    transform: scale(1.2);
+    color: #f59042 !important;
 }
 
 
 .nav-link {
     color: #fff;
-    font-size: 25px;
+    font-size: 16px;
     transition: .3s all ease-in;
     border: none;
+    font-weight: bold;
 }
 
 .nav-link:hover,
 .nav-link:focus {
     color: #f59042;
+    transform: scale(1.2);
 }
 
 .no-js #loader {
@@ -81,34 +96,54 @@ p {
 ================================================================================*/
 #home {
     height: 100vh;
+    width: 100%;
 }
 
-#home-cover {
-    height: 100%;
-    background-image: url("/images/home-cover.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    /* background-attachment: fixed; */
-
-}
-
-#home-content-box {
+.video-container {
+    position: absolute;
     width: 100%;
     height: 100%;
-    display: table;
+    overflow: hidden;
 }
 
-#home-content-box-inner {
-    display: table-cell;
-    vertical-align: middle;
-    /* text-align: center; */
+video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 
-#home-heading h3 {
-    color: #fff;
-    font-size: 55px;
-    font-weight: light;
-    margin: 20px 0;
+.video-container::after {
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+}
+
+.header {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.header h1 {
+    color: #fff !important;
+    font-size: 50px !important;
+}
+
+@media(max-width: 900px) {
+    .header {
+          left: 50%;
+    }
+
+    .header h1 {
+          font-size: 34px !important;
+    }
 }
 
 /* ===============================================================================
@@ -511,13 +546,13 @@ p {
     color: #fff;
 }
 
+#footer3 .ker {
+    padding-left: 70px;
+}
+
 #footer3 div div a {
     color: #34c6d3;
 }
-
-/* #footer3 form .input-full-width {
-    height: 60px;
-} */
 
 #footer3 form input.form-control.input-full-width:focus {
     border-color: #fbfbfb !important;
@@ -556,6 +591,12 @@ p {
 
     #footer3 {
         position: relative;
+    }
+}
+
+@media (max-width: 1198px) {
+    #footer3 .ker {
+        padding-left: 0;
     }
 }
 
@@ -636,4 +677,82 @@ p {
 
 #footer .row ul li a:hover {
     text-decoration: underline;
+}
+
+
+/* =======================================
+=============================================
+                BLOG SHOW 
+*/
+#post-image {
+    width: 100%;
+}
+
+#post-image .jumbotron {
+    background-image: url("/images/post-cover.jpg") !important;
+    background-position: center !important;
+    border-radius: 0;
+}
+
+.post-image {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+}
+
+.post-img {
+    max-width: 100%;
+    height: auto;
+    background-size: cover;
+    
+}
+
+#post-body .post-body-share {
+    margin-top: 250px;
+}
+
+#post-body #share-white {
+    background: #fff;
+}
+
+@media (max-width: 768px) {
+    #post-body .post-body-share {
+        margin-top: 50px;
+    }
+
+    #post-body .row .mll {
+        padding-left: 50px;
+    }
+}
+
+#post-body p {
+    color: rgb(85, 84, 84);
+}
+
+#post-body .row div a i.fa-facebook-f {
+    color: rgb(66,103,178);
+    transition: .3s all ease;
+}
+
+#post-body .row div a i.fa-facebook-f:hover {
+    transform: scale(1.2);
+}
+
+#post-body .row div a i.fa-twitter {
+    color: rgb(56,161,243);
+    transition: .3s all ease;
+}
+
+#post-body .row div a i.fa-twitter:hover {
+    transform: scale(1.2);
+    color: rgb(56,161,243,)
+}
+
+#post-body .row div a i.fa-pinterest-p {
+    color: rgb(189,8,28);
+    transition: .3s all ease;
+}
+
+#post-body .row div a i.fa-pinterest-p:hover {
+    transform: scale(1.2);
 }

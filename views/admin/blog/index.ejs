@@ -10,7 +10,7 @@
         <%=blog.title%>
     </div>
     <div>
-        <%-blog.description%>
+        <%-blog.description.substring(0, 100)%>
     </div>
     <div>
         <img src="<%=blog.image%>" alt="">
@@ -18,6 +18,7 @@
     <div>
         <%=blog.dateCreated%>
     </div>
+    <a href="/blog/<%=blog.id%>">view</a>
     <a href="/admin/blog/<%=blog.id%>/edit">edit</a>
     <form action="/admin/blog/<%=blog.id%>?_method=DELETE" method="post">
         <button>delete</button>

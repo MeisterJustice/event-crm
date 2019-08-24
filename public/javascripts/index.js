@@ -46,5 +46,4 @@ $(function () {
 })();
 
 //   ADMIN FORM
-
 CKEDITOR.replace('description');

@@ -1,6 +1,9 @@
+require('dotenv').config()
 import User from '../models/user';
+import Email from '../models/email-signup';
 import passport from 'passport';
 import nodemailer from 'nodemailer';
+import request from 'superagent';
 
 export const getIndex = (req, res, next) => {
   res.render('index');
@@ -23,9 +26,9 @@ ${req.body.message}
     auth: {
       type: 'OAuth2',
       user: 'thechiefje@gmail.com',
-      clientId: '',
-      clientSecret: '',
-      refreshToken: ''
+      clientId: '557',
+      clientSecret: '5557',
+      refreshToken: '5777'
 
     }
   });
@@ -44,6 +47,38 @@ ${req.body.message}
       console.log(response);
       res.redirect('/');
     }
+  });
+}
+
+export const emailSignup = async (req, res, next) => {
+  // save to database
+  let userEmail = await Email.create(req.body);
+  console.log(`${req.body.email} just signed up`);
+
+  // save to mailchimp
+  let mailchimpInstance = await process.env.MAILCHIMP_INSTANCE,
+    listUniqueId = await process.env.MAILCHIMP_ID,
+    mailchimpApiKey = await process.env.MAILCHIMP_API_KEY;
+
+    await request
+      .post('https://' + mailchimpInstance + '.api.mailchimp.com/3.0/lists/' + listUniqueId + '/members/')
+      .set('Content-Type', 'application/json;charset=utf-8')
+      .set('Authorization', 'Basic ' + new Buffer('any:' + mailchimpApiKey).toString('base64'))
+      .send({
+        'email_address': req.body.email,
+        'status': 'subscribed',
+        'merge_fields': {
+          'FNAME': req.body.firstName,
+          'LNAME': req.body.lastName
+        }
+      })
+      .end(function (err, response) {
+        if (response.status < 300 || (response.status === 400 && response.body.title === "Member Exists")) {
+          console.log('mailchimp worked')
+          res.redirect('/');
+        } else {
+          res.redirect('/')
+        }
   });
 }
 
@@ -71,6 +106,7 @@ export const postRegister = async (req, res, next) => {
   });
   await User.register(newUser, req.body.password);
   // req.flash("success", "welcome");
+  console.log(`${newUser.username} just registered!`)
   res.redirect("/event");
 }
 

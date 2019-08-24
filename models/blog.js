@@ -8,6 +8,12 @@ const blogSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    comments: [
+        {
+           type: mongoose.Schema.Types.ObjectId,
+           ref: "BlogComment"
+        }
+    ],
     dateCreated: {type: Date, default: Date.now},
 })
 export default mongoose.model("Blog", blogSchema);

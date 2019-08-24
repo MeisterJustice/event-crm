@@ -1,3 +1,4 @@
+require('dotenv').config()
 import createError from 'http-errors';
 import express from 'express';
 import { createServer } from 'http';
@@ -17,7 +18,7 @@ import indexRouter from './routes/';
 import adminRouter from './routes/admin';
 import blogRouter from './routes/blog';
 import eventRouter from './routes/event';
-import commentRouter from './routes/comment'
+import BlogCommentRouter from './routes/comment'
 
 const app = express();
 const server = createServer(app);
@@ -56,7 +57,7 @@ require('./config/facebook-passport')(passport);
 // configure routes
 app.use('/', indexRouter);
 app.use("/blog", blogRouter);
-app.use("/blog/:id/comment", commentRouter);
+app.use("/blog/:id/comments", BlogCommentRouter);
 app.use("/event", eventRouter);
 app.use("/admin", adminRouter);
 
@@ -77,7 +78,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Set port
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 // Use mongoose promise library
 mongoose.Promise = require('bluebird');
