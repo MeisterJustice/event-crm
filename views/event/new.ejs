@@ -1,9 +1,9 @@
 <% include ../partials/header %>
 
 
-<form action="/event/" method="post">
+<form action="/event/" method="post" enctype="multipart/form-data">
     <div>
-        <label for="">title</label>
+        <label class="mt-5" for="">title</label>
         <input name="title" type="text">
     </div>
     <div>
@@ -19,8 +19,12 @@
         <input name="venue" type="text">
     </div>
     <div>
+            <label for="">Main Image</label>
+            <input name="mainImage" type="text">
+        </div>
+    <div>
         <label for="">images</label>
-        <input name="images" type="text">
+        <input name="images" type="file" accept='images/*' multiple>
     </div>
     <button>post</button>
     

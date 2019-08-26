@@ -10,9 +10,8 @@ export const getBlog = async (req, res, next) => {
 
 export const showBlog = async (req, res, next) => {
     let latestBlog = await Blog.find({});
-    let blog = await Blog.findById(req.params.id);
-    let comments = await BlogComment.find({}).populate('replies').exec();
+    let blog = await Blog.findById(req.params.id).populate('comments').exec();
     res.render("blog/show", {
-        blog, latestBlog, comments
+        blog, latestBlog
     });
 }

@@ -756,3 +756,57 @@ video {
 #post-body .row div a i.fa-pinterest-p:hover {
     transform: scale(1.2);
 }
+
+/* =============================EVENT SHOW */
+#event-image .jumbotron {
+    background-image: url('/images/event-cover.jpg') !important;
+    background-position: center !important;
+    background-size: cover !important;
+    border-radius: 0;
+}
+
+#event-body #share-white {
+    background: #fff;
+}
+
+@media (max-width: 768px) {
+    #event-body .post-body-share {
+        margin-top: 50px;
+    }
+
+    #event-body .row .mll {
+        padding-left: 50px;
+    }
+}
+
+#event-body p {
+    color: rgb(85, 84, 84);
+}
+
+#event-body .row div a i.fa-facebook-f {
+    color: rgb(66,103,178);
+    transition: .3s all ease;
+}
+
+#event-body .row div a i.fa-facebook-f:hover {
+    transform: scale(1.2);
+}
+
+#event-body .row div a i.fa-twitter {
+    color: rgb(56,161,243);
+    transition: .3s all ease;
+}
+
+#event-body .row div a i.fa-twitter:hover {
+    transform: scale(1.2);
+    color: rgb(56,161,243,)
+}
+
+#event-body .row div a i.fa-pinterest-p {
+    color: rgb(189,8,28);
+    transition: .3s all ease;
+}
+
+#event-body .row div a i.fa-pinterest-p:hover {
+    transform: scale(1.2);
+}

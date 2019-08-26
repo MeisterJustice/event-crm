@@ -1,34 +1,140 @@
 <% include ../partials/header %>
 
+<section id="event-image">
+    <div class="jumbotron">
+        <h1 class="text-center text-white"><%= event.title %></h1>
+        <div id="image-div"
+            class="post-image d-flex mt-2 flex-column flex-lg-row justify-content-center justify-content-lg-center align-items-center align-items-lg-center">
+            <img class="post-img shadow-lg img-fluid" src="<%= event.mainImage %>" alt="<%= event.title %>">
+        </div>
+        <h5 class="mt-3 text-center text-white">13 comments so far</h5>
+    </div>
+</section>
 
-<h1>event show</h1>
+<section id="post-body" class="container mt-5">
+    <div class="row">
+        <div class="order-3 order-lg-1 col-12 col-lg-1 mr-0 mr-lg-5">
+            <div
+                class="sticky-top mr-5 d-none d-lg-flex flex-row flex-lg-column justify-content-around justify-content-lg-start align-items-center align-items-lg-center">
+                <div class="post-body-share d-none d-lg-block">
+                    <h4>share!</h4>
+                </div>
+                <div><a rel="noopener noreferrer" target="_blank"
+                        href="http://www.facebook.com/sharer.php?u=http://localhost:5000/event/<%=event.id%>"><i
+                            class="mll fab pt-3 fa-facebook-f fa-2x fb"></i></a><small>26x</small>
+                </div>
+                <div><a rel="noopener noreferrer" target="_blank"
+                        href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons"><i
+                            class="fab fa-twitter pt-3 fa-2x"></i></a><small>76x</small></div>
+                <div><a rel="noopener noreferrer" target="_blank"
+                        href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());"><i
+                            class="fab pt-3 fa-pinterest-p fa-2x"></i></a><small>245x</small></div>
+            </div>
+            <div id="share-white" class="fixed-bottom">
+                <h6 class="text-center">share post!</h6>
+                <div
+                    class="d-lg-none pr-5 d-flex flex-row flex-lg-column justify-content-around justify-content-lg-start align-items-center align-items-lg-center">
 
-<div>
-    <div>
-        <h2><%= event.title %></h2>
+                    <div><a rel="noopener noreferrer" target="_blank"
+                            href="http://www.facebook.com/sharer.php?u=http://localhost:5000/event/<%=event.id%>"><i
+                                class="mll fab fa-facebook-f fa-2x fb"></i></a></div>
+                    <div><a rel="noopener noreferrer" target="_blank"
+                            href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons"><i
+                                class="fab fa-twitter fa-2x"></i></a></div>
+                    <div><a rel="noopener noreferrer" target="_blank"
+                            href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','http://assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());"><i
+                                class="fab fa-pinterest-p fa-2x"></i></a></div>
+                </div>
+            </div>
+
+        </div>
+        <div class="order-2 order-lg-2 col-12 col-lg-8">
+            <div>
+                <div class="text-justify"><%= event.description %></div>
+                <h3 class="text-center mt-5">event gallery</h3>
+                <div class="row mt-2">
+                    <% event.images.forEach((image) => { %>
+                        <div class="col-6 col-lg-4 p-0">
+                            <a data-lightbox="gallery" data-title="My caption"
+                                href="<%= image.url %>"
+                                data-toggle="lightbox">
+                                <img class="img-fluid"
+                                    src="<%= image.url %>"
+                                    alt="event image">
+                            </a>
+                        </div>
+                    <%})%>
+                </div>
+            </div>
+
+            <div id="comments" class="pt-5">
+                <div class="py-4">
+                    <div>
+                        <h4 class="pb-3 text-center">comments</h4>
+                        <% event.comments.forEach((comment) => { %>
+                            <div>
+                                <h5><%= comment.name %></h5>
+                                <small class="text-muted"><%= comment.dateCreated.toDateString() %></small>
+                                <p class="pt-2"><%= comment.description %></p>
+                                <form class="d-inline" action="/event/<%=event.id%>/comments/<%=comment.id%>?_method=DELETE" method="post">
+                                    <button class="btn mb-5 btn-sm btn btn-secondary">delete</button>
+                                </form>
+                            </div>
+                        <%})%>
+                    </div>
+                </div>
+                <div>
+                    <form action="/event/<%=event.id%>/comments/" method="post">
+                        <h4 class="display-5 display-lg-3 text-center">
+                            share your thoughts and queries with us
+                        </h4>
+                        <div class="form-group pt-3">
+                            <textarea name="description" class="form-control" id="co" rows="10"></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <input name="email" type="email" class="form-control"
+                                        placeholder="your email(optional)">
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <input name="name" type="text" class="form-control" placeholder="name">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-md btn-primary">publish</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div>
+                    <h3 class="text-center mt-5">latest blog posts</h3>
+                </div>
+                <div class="mt-3">
+                    <div class="card-group">
+                        <%for(let i = 0; i < 3; i++) { %>
+                        <%let post = latestBlog.slice(Math.max(latestBlog.length - 5, 0))%>
+                        <div class="card">
+                            <a href="/blog/<%=post[i].id%>">
+                                <img src="<%=post[i].image%>" class="card-img-top" alt="<%-post[i].title%>">
+                                <div class="card-body">
+                                    <h5 class="card-title text-dark"><%-post[i].title%></h5>
+                                    <p class="card-text"><%-post[i].description.substring(0, 50)%>.</p>
+                                    <p class="card-text"><small class="text-muted">posted on
+                                            <%=post[i].dateCreated.toDateString()%></small></p>
+                                </div>
+                            </a>
+                        </div>
+                        <%}%>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        <div class="col-12 col-3 order-1 order-lg-3"></div>
     </div>
-    <div>
-        <p><%= event.description %></p>
-    </div>
-    <div>
-        <p><%= event.city %></p>
-    </div>
-    <div>
-        <p><%= event.venue %></p>
-    </div>
-    <% event.images.forEach((image) => { %>
-    <div>
-        <img src="<%= image %>" alt="image">
-    </div>
-    <%})%>
-    <div>
-        <a href="/event/<%=event.id%>/edit">edit</a>
-    </div>
-    <div>
-        <form action="/event/<%=event.id%>?_method=DELETE" method="POST">
-            <button>delete event</button>
-        </form>
-    </div>
-</div>
+</section>
+
 
 <% include ../partials/footer %>

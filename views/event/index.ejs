@@ -20,11 +20,6 @@
         <div>
             <p><%= event.venue %></p>
         </div>
-        <% event.images.forEach((image) => { %>
-            <div>
-                <img src="<%= image %>" alt="image">
-            </div>
-        <%})%>
         <div>
             <a href="/event/<%=event.id%>">see more</a>
         </div>

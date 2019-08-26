@@ -47,3 +47,9 @@ $(function () {
 
 //   ADMIN FORM
 CKEDITOR.replace('description');
+
+// lighbox
+$(document).on('click', '[data-toggle="lightbox"]', function (event) {
+	event.preventDefault();
+	$(this).ekkoLightbox();
+  });

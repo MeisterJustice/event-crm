@@ -9,16 +9,14 @@ import logger from 'morgan';
 import bodyParser from 'body-parser'; 
 import methodOverride from 'method-override';
 import passport from 'passport';
-import LocalStrategy from 'passport-local';
-
-import User from './models/user';
 
 // import routers
 import indexRouter from './routes/';
 import adminRouter from './routes/admin';
 import blogRouter from './routes/blog';
 import eventRouter from './routes/event';
-import BlogCommentRouter from './routes/comment'
+import blogCommentRouter from './routes/blog-comment';
+import eventCommentRouter from './routes/event-comment'
 
 const app = express();
 const server = createServer(app);
@@ -57,8 +55,9 @@ require('./config/facebook-passport')(passport);
 // configure routes
 app.use('/', indexRouter);
 app.use("/blog", blogRouter);
-app.use("/blog/:id/comments", BlogCommentRouter);
+app.use("/blog/:id/comments", blogCommentRouter);
 app.use("/event", eventRouter);
+app.use("/event/:id/comments", eventCommentRouter);
 app.use("/admin", adminRouter);
 
 // catch 404 and forward to error handler

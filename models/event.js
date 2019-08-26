@@ -5,11 +5,20 @@ const eventSchema = new Schema({
     description: String,
     city: String,
     venue: String,
-    images: [String],
+    lat: Number,
+    lng: Number,
+    mainImage: String,
+    images: [{url: String, public_id: String}],
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'
     },
+    comments: [
+        {
+           type: mongoose.Schema.Types.ObjectId,
+           ref: "EventComment"
+        }
+    ],
     dateCreated: {type: Date, default: Date.now},
 })
 export default mongoose.model("Event", eventSchema);

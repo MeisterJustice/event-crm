@@ -5,7 +5,7 @@ import {
     showBlog
 } from '../controllers/blog';
 import { errorHandler } from '../middleware';
-import { postComment } from '../controllers/comment';
+import { postComment } from '../controllers/blog-comment';
 
 
 /* GET users listing. */

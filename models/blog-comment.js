@@ -4,10 +4,6 @@ const blogCommentSchema = new Schema({
     email: String,
     name: String,
     description: String,
-    replies: [{
-        type: Schema.Types.ObjectId,
-        ref: 'BlogCommentReply'
-    }],
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User'

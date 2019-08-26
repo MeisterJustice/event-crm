@@ -75,55 +75,20 @@
                 <div class="py-4">
                     <div>
                         <h4 class="pb-3 text-center">comments</h4>
-                        <% comments.forEach((comment) => { %>
+                        <% blog.comments.forEach((comment) => { %>
                             <div>
                                 <h5><%= comment.name %></h5>
                                 <small class="text-muted"><%= comment.dateCreated.toDateString() %></small>
                                 <p class="pt-2"><%= comment.description %></p>
-                                <button type="button" data-toggle="modal" data-target="#reply" class="d-inline btn mb-5 btn-sm btn btn-secondary">reply</button>
                                 <form class="d-inline" action="/blog/<%=blog.id%>/comments/<%=comment.id%>?_method=DELETE" method="post">
                                     <button class="btn mb-5 btn-sm btn btn-secondary">delete</button>
                                 </form>
-                                <div class="modal fade" id="reply" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg">
-                                        <div class="modal-content container-fluid">
-                                            <form action="/blog/<%-blog.id%>/comments/<%=comment.id%>/reply" method="post">
-                                                <div class="form-group pt-3">
-                                                    <textarea name="description" class="form-control" id="co" rows="7"></textarea>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-12 col-md-6">
-                                                        <div class="form-group">
-                                                            <input name="email" type="email" class="form-control" placeholder="your email(optional)">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 col-md-6">
-                                                        <div class="form-group">
-                                                            <input name="name" type="text" class="form-control" placeholder="name">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-12 pb-3">
-                                                        <button class="btn btn-md btn-primary">publish</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="pl-5 reply container">
-                                        <div>
-                                            <h6><%= comment.replies.name %></h6>
-                                            <small class="text-muted"><%= comment.replies.description %></small>
-                                            <p class="pt-2 pb-3"><%= comment.replies.dateCreated %></p>
-                                        </div>
-                                </div>
                             </div>
-                            
                         <%})%>
                     </div>
                 </div>
                 <div>
-                    <form action="/blog/<%-blog.id%>" method="post">
+                    <form action="/blog/<%=blog.id%>" method="post">
                         <h4 class="display-5 display-lg-3 text-center">
                             share your thought with us
                         </h4>

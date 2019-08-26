@@ -1,4 +1,14 @@
 import Event from '../models/event';
+import Blog from '../models/blog';
+import cloudinary from 'cloudinary';
+import cloudinaryAuth from '../config/auth';
+
+// cloudinary configuration
+cloudinary.config({
+    cloud_name: cloudinaryAuth.cloudinaryUpload.cloud_name,
+    api_key: cloudinaryAuth.cloudinaryUpload.api_key,
+    api_secret: cloudinaryAuth.cloudinaryUpload.api_secret
+})
 
 export const getEvent = async(req, res, next) => {
     let findEvent = await Event.find({});
@@ -10,13 +20,22 @@ export const getEvent = async(req, res, next) => {
 }
 
 export const postEvent = async(req, res, next) => {
+    req.body.images = [];
+    for(const file of req.files) {
+        let image = await cloudinary.v2.uploader.upload(file.path);
+        req.body.images.push({
+            url: image.secure_url,
+            public_id: image.public_id
+        });
+    }
     let createEvent = Event.create(req.body);
     res.redirect("/event");
 }
 
 export const showEvent = async(req, res, next) => {
-    let event = await Event.findById(req.params.id);
-    res.render("event/show", {event})
+    let latestBlog = await Blog.find({});
+    let event = await Event.findById(req.params.id).populate('comments').exec();
+    res.render("event/show", {event, latestBlog})
 }
 
 export const getEdit = async(req, res, next) => {
