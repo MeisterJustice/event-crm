@@ -15,7 +15,7 @@ router.get('/:id', errorHandler(showEvent));
 
 router.get('/:id/edit', errorHandler(getEdit));
 
-router.put('/:id', errorHandler(putEvent));
+router.put('/:id', upload.array('images', 6), errorHandler(putEvent));
 
 router.delete('/:id', errorHandler(deleteEvent));
 

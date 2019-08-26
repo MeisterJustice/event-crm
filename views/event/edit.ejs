@@ -1,7 +1,7 @@
 <% include ../partials/header %>
 
 
-<form action="/event/<%=showEdit.id%>?_method=PUT" method="post">
+<form action="/event/<%=showEdit.id%>?_method=PUT" method="post" id="eventEditForm" enctype="multipart/form-data">
     <div>
         <label for="">title</label>
         <input name="title" value="<%=showEdit.title%>" type="text">
@@ -22,12 +22,38 @@
             <label for="">Main Image</label>
             <input name="mainImage" value="<%=showEdit.mainImage%>" type="text">
         </div>
-    <div>
-        <label for="">images</label>
-        <input value="<%=showEdit.images%>" name="images" type="text">
-    </div>
+        <div>
+            <label for="">images</label>
+            <input id="imageUpload" name="images" type="file" accept='images/*' multiple>
+            <div>
+                <% showEdit.images.forEach((image, i) => { %>
+                    <img src="<%= image.url %>" width="100px" height="100px">
+                    <label for="image<%= i %>">delete</label>
+                    <input id="image<%= i %>" name="deleteImage" type="checkbox" class="imageDeleteCheckbox" value="<%= image.public_id %>">
+                <%});%>
+            </div>
+        </div>
     <button>post</button>
-    
 </form>
+<script>
+    // find post edit form
+    let eventEditForm = document.getElementById('eventEditForm');
+    // add submit listener to the post edit form
+    eventEditForm.addEventListener('submit', (event) => {
+        // find length of uploaded images
+        let imageUpload = document.getElementById('imageUpload').files.length;
+        // find total number of existing images
+        let existingImgs = document.querySelectorAll('.imageDeleteCheckbox').length;
+        // find total number of potential deletion
+        let imgDeletion = document.querySelectorAll('.imageDeleteCheckbox:checked').length;
+        // figure out if the form can be submitted
+        let newTotal = existingImgs - imgDeletion + imageUpload;
+        if(newTotal > 6) {
+            event.preventDefault();
+            let removalAmt = newTotal - 6;
+            alert(`you need to remove at least ${removalAmt} more image${removalAmt === 1 ? '' : 's'}`)
+        }
+    });
+</script>
 
 <% include ../partials/footer %>
