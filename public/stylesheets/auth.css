@@ -30,11 +30,11 @@ body, html {
 }
 
 .side-desc {
-  height: 50%;
+  height: 40%;
 }
 
 #login {
-  height: 100vh;
+  height: 100%;
   width: 100%;
 }
 

@@ -28,8 +28,8 @@
             <div>
                 <% showEdit.images.forEach((image, i) => { %>
                     <img src="<%= image.url %>" width="100px" height="100px">
-                    <label for="image<%= i %>">delete</label>
-                    <input id="image<%= i %>" name="deleteImage" type="checkbox" class="imageDeleteCheckbox" value="<%= image.public_id %>">
+                    <label for="image<%= i %>">delete?</label>
+                    <input id="image<%= i %>" name="deleteImages[]" type="checkbox" class="imageDeleteCheckbox" value="<%= image.public_id %>">
                 <%});%>
             </div>
         </div>

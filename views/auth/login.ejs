@@ -54,6 +54,18 @@
                         </li>
                     </ul>
                 </div>
+                <div class="p-0 m-0">
+                    <% if(error && error.length > 0){ %>
+                        <div class="alert alert-danger text-center" role="alert">
+                        <%=error%>
+                        </div>
+                    <% } %>
+                    <% if(success && success.length > 0){ %>
+                        <div class="alert alert-success text-center" role="alert">
+                        <%=success%>
+                        </div>
+                    <% } %>
+                </div>
                 <div class="side-r d-flex justify-content-center align-items-center">
 
                     <div id="menu-bar" class="d-lg-none">
@@ -78,7 +90,7 @@
                         <form action="/login" method="POST">
                             <h3 class="mb-5 display-5">log back in</h3>
 
-                            <input type="email" name="email" placeholder="email">
+                            <input type="text" name="username" placeholder="username">
                             <input type="password" name="password" placeholder="password">
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="forgot">

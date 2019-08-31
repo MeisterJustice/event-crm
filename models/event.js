@@ -5,14 +5,15 @@ const eventSchema = new Schema({
     description: String,
     city: String,
     venue: String,
-    lat: Number,
-    lng: Number,
     mainImage: String,
     images: [{url: String, public_id: String}],
     author: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
+        id: {
+           type: mongoose.Schema.Types.ObjectId,
+           ref: "User"
+        },
+        username: String
+     },
     comments: [
         {
            type: mongoose.Schema.Types.ObjectId,

@@ -2,21 +2,23 @@ const express = require('express');
 const router = express.Router({mergeParams: true});
 const multer = require('multer');
 const upload = multer({'dest': 'uploads/'});
+import isLoggedIn from '../validation/isLoggedIn';
+import eventOwnership from '../validation/event-ownership';
 import { getEvent, getCreateEvent, postEvent, showEvent, getEdit, putEvent, deleteEvent } from '../controllers/event';
 import { errorHandler } from '../middleware';
 
 router.get('/', errorHandler(getEvent));
 
-router.get('/new', errorHandler(getCreateEvent));
+router.get('/new', isLoggedIn, errorHandler(getCreateEvent));
 
-router.post('/', upload.array('images', 6),  errorHandler(postEvent));
+router.post('/', isLoggedIn, upload.array('images', 6),  errorHandler(postEvent));
 
 router.get('/:id', errorHandler(showEvent));
 
-router.get('/:id/edit', errorHandler(getEdit));
+router.get('/:id/edit', eventOwnership, errorHandler(getEdit));
 
-router.put('/:id', upload.array('images', 6), errorHandler(putEvent));
+router.put('/:id', eventOwnership, upload.array('images', 6), errorHandler(putEvent));
 
-router.delete('/:id', errorHandler(deleteEvent));
+router.delete('/:id', eventOwnership, errorHandler(deleteEvent));
 
 export default router;

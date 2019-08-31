@@ -4,6 +4,7 @@ import express from 'express';
 import { createServer } from 'http';
 import path from 'path';
 import cookieParser from 'cookie-parser';
+import flash from 'connect-flash';
 import mongoose from 'mongoose';
 import logger from 'morgan';
 import bodyParser from 'body-parser'; 
@@ -31,6 +32,7 @@ mongoose.connect('mongodb://localhost:27017/event-crm', {
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, '/public')));
 
 app.use(methodOverride("_method"));
@@ -44,12 +46,27 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+app.use(flash());
+
+app.use(require("express-session")({
+  secret: "Meister",
+  resave: false,
+  saveUninitialized: true
+}));
 
 // passpor config
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/local-passport')(passport);
 require('./config/facebook-passport')(passport);
+
+// flash config
+app.use((req, res, next) => {
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+  res.locals.currentUser = req.user;
+  next();
+});
 
 
 // configure routes

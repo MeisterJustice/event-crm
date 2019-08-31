@@ -20,15 +20,30 @@ export const getEvent = async(req, res, next) => {
 }
 
 export const postEvent = async(req, res, next) => {
+    let title = await req.body.title;
+    let description = await req.body.description;
+    let city = await req.body.city;
+    let venue = await req.body.venue;
+    let mainImage = await req.body.mainImage;
+    let author = await {
+        id: req.user._id,
+        username: req.user.username
+    }
+    
     req.body.images = [];
+    let images = await req.body.images;
     for(const file of req.files) {
         let image = await cloudinary.v2.uploader.upload(file.path);
-        req.body.images.push({
+        images.push({
             url: image.secure_url,
             public_id: image.public_id
         });
     }
-    let createEvent = Event.create(req.body, {new: true});
+
+    let event = {title: title, description: description, city: city, venue: venue, mainImage: mainImage, images: images, author: author};
+    
+
+    let createEvent = Event.create(event, {new: true});
     res.redirect("/event");
 }
 

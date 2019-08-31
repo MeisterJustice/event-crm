@@ -35,6 +35,8 @@ nav.scrolled {
     height: 55px;
 }
 
+
+
 nav.scrolled .nav-link {
     color: #333 !important;
     transition: .3s all ease-in;
@@ -78,7 +80,7 @@ nav.scrolled .nav-link:hover {
     width: 100%;
     height: 100%;
     z-index: 9999;
-    background: url(https://j2n9a3i8.stackpathcdn.com/wp-content/uploads/2014/08/Preloader_11.gif) center no-repeat #fff;
+    background: url('/images/loader2.gif') center no-repeat #fff;
 }
 
 h3 {
@@ -334,7 +336,7 @@ video {
 
 .change-bg {
     width: 550px;
-    height: 540px;
+    height: 670px;
     transform: translate(-60%, -30%);
 }
 

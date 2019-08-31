@@ -8,7 +8,6 @@ import { errorHandler } from '../middleware';
 import { postComment } from '../controllers/blog-comment';
 
 
-/* GET users listing. */
 router.get('/', errorHandler(getBlog));
 
 router.get('/:id', errorHandler(showBlog))

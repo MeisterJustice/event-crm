@@ -104,10 +104,16 @@ export const postRegister = async (req, res, next) => {
     sex: req.body.sex,
     email: req.body.email
   });
-  await User.register(newUser, req.body.password);
-  // req.flash("success", "welcome");
-  console.log(`${newUser.username} just registered!`)
-  res.redirect("/event");
+  await User.register(newUser, req.body.password, function(err, user){
+    if(err){
+        // req.flash("error", err.message);
+        return res.render("auth/register");
+    }
+    passport.authenticate("local")(req, res, function(){
+        // req.flash("success", "Welcome to YelpCamp " + user.username);
+        res.redirect("/");
+    });
+}); 
 }
 
 export const getLogin = async (req, res, next) => {

@@ -13,10 +13,12 @@
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="/stylesheets/style.css">
     <title>event-crm</title>
 </head>
-
 <body>
     <div class="se-pre-con"></div>
     <section id="navbar" class="d-none d-lg-block">
@@ -26,8 +28,13 @@
             <a class="nav-link my-auto" href="#">about</a>
             <a class="nav-link my-auto" href="/event">event</a>
             <a class="nav-link my-auto" href="/blog">blog</a>
-            <a class="nav-link my-auto ml-auto" href="/register">register</a>
-            <a class="nav-link my-auto" href="/login">login</a>
+            <% if(!currentUser) { %>
+                <a class="nav-link my-auto ml-auto" href="/register">register</a>
+                <a class="nav-link my-auto" href="/login">login</a>
+            <%} else { %>
+                <a href="#" class="text-muted my-auto ml-auto text-dark">signed in as <%=currentUser.username%></a>
+                <a class="nav-link my-auto" href="/logout">logout</a>
+            <%}%>
         </nav>
     </section>
 
@@ -43,6 +50,25 @@
             <li><a href="#">contact</a></li>
             <li><a href="/event">event</a></li>
             <li><a href="/blog">blog</a></li>
+            <% if(!currentUser) { %>
+                <li><a href="/register">register</a></li>
+                <li><a href="/login">login</a></li>
+            <%} else { %>
+                <li><a href="/logout">logout</a></li>
+            <%}%>
         </ul>
     </div>
     <div class="menu-bg d-lg-none" id="menu-bg"></div>
+
+    <div class="container">
+        <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger" role="alert">
+            <%=error%>
+            </div>
+        <% } %>
+        <% if(success && success.length > 0){ %>
+            <div class="alert alert-success" role="alert">
+            <%=success%>
+            </div>
+        <% } %>
+    </div>
