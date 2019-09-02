@@ -25,7 +25,18 @@ export const getCreateBlog = async (req, res, next) => {
 }
 
 export const postBlog = async (req, res, next) => {
-    let createBlog = await Blog.create(req.body);
+    let title = await req.body.title;
+    let description = await req.body.description;
+    let image = await req.body.image;
+    let author = await {
+        id: req.user._id,
+        username: req.user.username
+    }
+
+    let blog = await {title: title, description: description, image: image, author: author};
+    
+
+    let createBlog = await Blog.create(blog, {new: true});
     res.redirect("/admin/blog");
 }
 

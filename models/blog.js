@@ -5,9 +5,12 @@ const blogSchema = new Schema({
     description: String,
     image: String,
     author: {
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
+        id: {
+           type: mongoose.Schema.Types.ObjectId,
+           ref: "User"
+        },
+        username: String
+     },
     comments: [
         {
            type: mongoose.Schema.Types.ObjectId,

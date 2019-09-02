@@ -94,9 +94,6 @@ export const putEvent = async(req, res, next) => {
 
 export const deleteEvent = async(req, res, next) => {
     let event = await Event.findById(req.params.id);
-    for(const image of event.images) {
-        await cloudinary.v2.uploader.destroy(image.public_id);
-    }
-    await Event.findByIdAndRemove({});
+    await Event.findByIdAndRemove();
     res.redirect("/event");
 }

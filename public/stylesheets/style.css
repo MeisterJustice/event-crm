@@ -812,3 +812,29 @@ video {
 #event-body .row div a i.fa-pinterest-p:hover {
     transform: scale(1.2);
 }
+
+/* =================================BLOG PAGE */
+
+#blog-page-header {
+    height: 40vh;
+}
+
+#blog-page-header .jumbotron {
+    background: #000000 !important;
+    background: -webkit-linear-gradient(to right, #434343, #000000) !important;
+    background: linear-gradient(to right, #434343, #000000) !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    height: 100%;
+    width: 100%;
+    border-radius: 0;
+}
+
+#blog-page-body .row .banner {
+    width: 100%;
+    height: 100vh;
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #434343, #000000);
+    background: linear-gradient(to right, #434343, #000000);
+}
