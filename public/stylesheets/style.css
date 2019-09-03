@@ -26,6 +26,17 @@ body {
     border: none;
 }
 
+#navbar form input.form-control {
+    background: transparent;
+    width: 150px;
+    border-radius: 100px;
+    border: 1px solid rgb(197, 195, 195);
+}
+
+#navbar form input.form-control:focus {
+    box-shadow: none;
+}
+
 nav.scrolled {
     background-color: #fff;
     -webkit-box-shadow: 0 8px 6px -4px #eeebeb;
@@ -836,5 +847,6 @@ video {
     height: 100vh;
     background: #000000;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #434343, #000000);
+    z-index: 0;
     background: linear-gradient(to right, #434343, #000000);
 }

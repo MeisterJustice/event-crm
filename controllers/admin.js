@@ -25,18 +25,14 @@ export const getCreateBlog = async (req, res, next) => {
 }
 
 export const postBlog = async (req, res, next) => {
-    let title = await req.body.title;
-    let description = await req.body.description;
-    let image = await req.body.image;
     let author = await {
         id: req.user._id,
         username: req.user.username
     }
 
-    let blog = await {title: title, description: description, image: image, author: author};
-    
+    req.body.author = author;    
 
-    let createBlog = await Blog.create(blog, {new: true});
+    await Blog.create(req.body);
     res.redirect("/admin/blog");
 }
 
@@ -52,6 +48,12 @@ export const getCreateEvent = async (req, res, next) => {
 }
 
 export const postEvent = async (req, res, next) => {
+    let author = await {
+        id: req.user._id,
+        username: req.user.username
+    }
+
+    req.body.author = author;
     let createEvent = await Event.create(req.body);
     res.redirect("/admin/event");
 }
