@@ -10,6 +10,8 @@ import logger from 'morgan';
 import bodyParser from 'body-parser'; 
 import methodOverride from 'method-override';
 import passport from 'passport';
+// import seedPosts from './seeds';
+// seedPosts();
 
 // import routers
 import indexRouter from './routes/';
