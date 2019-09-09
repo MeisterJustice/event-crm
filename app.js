@@ -96,7 +96,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Set port
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 7000;
 
 // Use mongoose promise library
 mongoose.Promise = require('bluebird');

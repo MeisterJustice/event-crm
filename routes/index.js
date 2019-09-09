@@ -10,6 +10,8 @@ import {
   getLogin,
   postLogin,
   getLogout,
+  getProfile,
+  // updateProfile,
   postForm,
   emailSignup,
   forgotPassword,
@@ -20,7 +22,9 @@ import {
 
 import {
   errorHandler
-} from '../middleware'
+} from '../middleware';
+
+import isLoggedIn from '../validation/isLoggedIn';
 
 router.get('/', errorHandler(getIndex));
 
@@ -41,6 +45,10 @@ router.get("/login", errorHandler(getLogin));
 router.post("/login", errorHandler(postLogin));
 
 router.get("/logout", errorHandler(getLogout));
+
+router.get('/profile',isLoggedIn, errorHandler(getProfile));
+
+// router.put('/profile/:user_id', errorHandler(updateProfile));
 
 router.get('/forgot-password', forgotPassword);
 
