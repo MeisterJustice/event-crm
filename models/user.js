@@ -7,7 +7,9 @@ const userSchema = new Schema({
     firstName: String,
     lastName: String,
     sex: String,
-    email: String,
+    email: { type: String, unique: true},
+    resetPasswordToken: String,
+    resetPasswordExpires: Date,
 
     facebook: {
         id: String,

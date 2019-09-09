@@ -9,16 +9,16 @@
 <section id="blog-page-body" class="mt-5">
     <div class="px-md-5">
         <div class="row">
-            <div class="col-lg-9">
+            <div class="col-lg-9 order-2 order-md-1">
                 <div class="row">
                     <% blog.docs.forEach((blog) => { %>
                     <div class="col-lg-6 p-0">
 
-                        <div class="card mt-5" style="max-width: 34rem;">
+                        <div class="card mt-5 shadow" style="max-width: 34rem;">
                             <img src="<%= blog.image %>" class="card-img-top" alt="<%= blog.title %>">
                             <div class="card-body">
                                 <h5 class="card-title"><%= blog.title %></h5>
-                                <p class="card-text"><%- blog.description.substring(0, 100) %></p>
+                                <p class="card-text text-justify"><%- blog.description.substring(0, 250) %></p>
                                 <p class="card-text"><small class="text-muted">updated on
                                         <%= blog.dateCreated.toDateString() %> <br> by <%=blog.author.username%></small>
                                 </p>
@@ -31,20 +31,32 @@
                     </div>
                     <%})%>
                 </div>
-                <div class="mt-4">
-                    <% if(blog.page - 1) { %>
-                        <a href="/blog?page=<%= blog.page - 1 %>">Prev</a>
-                    <% } %>
-                    <% for(let i = 1; i <= blog.pages; i++) { %>
-                        <a href="/blog?page=<%= i %>" <%= i === blog.page ? 'style=color:#000' : '' %>><%= i %></a>
-                    <% } %>
-                    <% if((blog.page + 1) <= blog.pages) { %>
-                        <a href="/blog?page=<%= blog.page + 1 %>">Next</a>
-                    <% } %>
-                </div>
+
+                <nav aria-label="Page navigation example mt-5 mx-auto">
+                    <ul class="pagination mt-5">
+                        <% if(blog.page - 1) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="/blog?page=<%= blog.page - 1 %>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <% } %>
+                        <% for(let i = 1; i <= blog.pages; i++) { %>
+                        <li class="page-item"><a class="page-link" href="/blog?page=<%= i %>"
+                                <%= i === blog.page ? 'style=color:#000' : '' %>><%= i %></a></li>
+                        <% } %>
+                        <% if((blog.page + 1) <= blog.pages) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="/blog?page=<%= blog.page + 1 %>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        <% } %>
+                    </ul>
+                </nav>
             </div>
-            <div class="col-lg-3">
-                <div class="banner d-lg-flex justify-content-center align-items-center sticky-top mt-5">
+            <div class="col-lg-3 order-1 order-md-2">
+                <div class="banner shadow d-flex justify-content-center align-items-center justify-content-md-center align-items-md-center sticky-top mt-5">
                     <h3 class="text-white">
                         AD banner
                     </h3>

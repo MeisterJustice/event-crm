@@ -45,13 +45,17 @@ $(function () {
 	}, false);
 })();
 
-//   ADMIN FORM
-CKEDITOR.replace('description');
-
 // lighbox
 $(document).on('click', '[data-toggle="lightbox"]', function (event) {
 	event.preventDefault();
 	$(this).ekkoLightbox();
   });
 
-  
+// bootstrap popover 
+$('.popover-dismiss').popover({
+	trigger: 'focus'
+})
+
+$(function () {
+	$('[data-toggle="popover"]').popover()
+})

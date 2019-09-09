@@ -1,0 +1,19 @@
+ul li div.dropdown-menu.show {
+    background: rgb(56, 56, 56);
+}
+
+ul li div a.dropdown-item {
+    color: #fff;
+}
+
+nav div a.navbar-brand {
+    font-size: 15px !important;
+    font-style: italic;
+    color: rgba(245, 241, 241, 0.911);
+}
+
+nav ul.navbar-nav.ml-auto li form button {
+    background: transparent;
+    border: none;
+    color: #fff;
+}

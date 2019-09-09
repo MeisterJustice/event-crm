@@ -11,13 +11,13 @@ router.get('/', errorHandler(getEvent));
 
 router.get('/new', isLoggedIn, errorHandler(getCreateEvent));
 
-router.post('/', isLoggedIn, upload.array('images', 6),  errorHandler(postEvent));
+router.post('/', isLoggedIn, upload.array('images', 9),  errorHandler(postEvent));
 
 router.get('/:id', errorHandler(showEvent));
 
 router.get('/:id/edit', eventOwnership, errorHandler(getEdit));
 
-router.put('/:id', eventOwnership, upload.array('images', 6), errorHandler(putEvent));
+router.put('/:id', eventOwnership, errorHandler(putEvent));
 
 router.delete('/:id', eventOwnership, errorHandler(deleteEvent));
 

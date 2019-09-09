@@ -1,59 +1,99 @@
 <% include ../partials/header %>
 
-
-<form action="/event/<%=showEdit.id%>?_method=PUT" method="post" id="eventEditForm" enctype="multipart/form-data">
-    <div>
-        <label for="">title</label>
-        <input name="title" value="<%=showEdit.title%>" type="text">
-    </div>
-    <div>
-        <label for="">description</label>
-        <textarea name="description" id="" cols="30" rows="10"><%=showEdit.description%></textarea>
-    </div>
-    <div>
-        <label for="">city</label>
-        <input value="<%=showEdit.city%>" name="city" type="text">
-    </div>
-    <div>
-        <label for="">venue</label>
-        <input value="<%=showEdit.venue%>" name="venue" type="text">
-    </div>
-    <div>
-            <label for="">Main Image</label>
-            <input name="mainImage" value="<%=showEdit.mainImage%>" type="text">
-        </div>
-        <div>
-            <label for="">images</label>
-            <input id="imageUpload" name="images" type="file" accept='images/*' multiple>
-            <div>
-                <% showEdit.images.forEach((image, i) => { %>
-                    <img src="<%= image.url %>" width="100px" height="100px">
-                    <label for="image<%= i %>">delete?</label>
-                    <input id="image<%= i %>" name="deleteImages[]" type="checkbox" class="imageDeleteCheckbox" value="<%= image.public_id %>">
-                <%});%>
+<section id="event-new" class="mt-5 container">
+    <h2 class="text-center">
+        edit your post
+    </h2>
+    <form class="mt-4 shadow-lg" action="/event" method="post">
+        <div class="row">
+            <div class="col-lg-8 ml-lg-5">
+                <div class="ml-2 ml-lg-0">
+                    <label for="title" class="d-block mb-0 mt-2">
+                        <h4>title</h4>
+                    </label>
+                    <input value="<%= showEdit.title %>" id="title" type="text" name="title" required class="d-inline">
+                    <span tabindex="0" class="display-5 ml-3" role="button" data-toggle="popover" data-trigger="focus"
+                        data-content="an engaging title that'll get audience excited. Example; best pool party coming up in Lagos">?</span>
+                </div>
+                <div class="mt-3">
+                    <label for="description d-block">
+                        <h4>describe the event</h4>
+                    </label>
+                    <textarea name="description" id="description" cols="30"
+                        rows="10"><%= showEdit.description %></textarea>
+                </div>
+                <div class="my-2 ml-2 ml-lg-0">
+                    <button class="btn btn-md btn-dark">post</button>
+                </div>
+            </div>
+            <div class="col-lg-3 bg-dark">
+                <h4 class="text-center text-white mt-4">more details</h4>
+                <div class="mt-4">
+                    <div class="mt-3 text-white">
+                        <label for="country" class="d-block mb-0 text-white">
+                            <h5>country of event</h5>
+                        </label>
+                        <inputvalue="<%= showEdit.country %>" id="country" type="text" name="country" required
+                            class="d-inline">
+                            <span tabindex="0" class="display-5 ml-3" role="button" data-toggle="popover"
+                                data-trigger="focus" data-content="what country the event will be holding in">?</span>
+                    </div>
+                    <div class="text-white">
+                        <label for="city" class="d-block mb-0 text-white mt-3">
+                            <h5>city of event</h5>
+                        </label>
+                        <input value="<%= showEdit.city %>" id="city" type="text" name="city" required class="d-inline">
+                        <span tabindex="0" class="display-5 ml-3" role="button" data-toggle="popover"
+                            data-trigger="focus" data-content="what city the event will be holding in">?</span>
+                    </div>
+                    <div class="text-white">
+                        <label for="venue" class="d-block mb-0 text-white mt-3">
+                            <h5>venue of event</h5>
+                        </label>
+                        <input value="<%= showEdit.venue %>" id="venue" type="text" name="venue" required
+                            class="d-inline">
+                        <span tabindex="0" class="display-5 ml-3" role="button" data-toggle="popover"
+                            data-trigger="focus" data-content="what venue the event will be holding in">?</span>
+                    </div>
+                    <div class="text-white">
+                        <label for="eventDate" class="d-block mb-0 text-white mt-3">
+                            <h5>date of event</h5>
+                        </label>
+                        <input value="<%= showEdit.eventDate %>" id="eventDate" type="text" name="eventDate" required
+                            class="d-inline">
+                        <span tabindex="0" class="display-5 ml-3" role="button" data-toggle="popover"
+                            data-trigger="focus" data-content="what's the date of the event">?</span>
+                    </div>
+                    <div class="text-white pb-4 pb-lg-0">
+                        <label for="eventTime" class="d-block mb-0 text-white mt-3">
+                            <h5>time of event</h5>
+                        </label>
+                        <input value="<%= showEdit.eventTime %>" id="eventTime" type="text" name="eventTime" required
+                            class="d-inline">
+                        <span tabindex="0" class="display-5 ml-3" role="button" data-toggle="popover"
+                            data-trigger="focus"
+                            data-content="event starts when and ends when. Example 4pm to 9pm">?</span>
+                    </div>
+                </div>
             </div>
         </div>
-    <button>post</button>
-</form>
-<script>
-    // find post edit form
-    let eventEditForm = document.getElementById('eventEditForm');
-    // add submit listener to the post edit form
-    eventEditForm.addEventListener('submit', (event) => {
-        // find length of uploaded images
-        let imageUpload = document.getElementById('imageUpload').files.length;
-        // find total number of existing images
-        let existingImgs = document.querySelectorAll('.imageDeleteCheckbox').length;
-        // find total number of potential deletion
-        let imgDeletion = document.querySelectorAll('.imageDeleteCheckbox:checked').length;
-        // figure out if the form can be submitted
-        let newTotal = existingImgs - imgDeletion + imageUpload;
-        if(newTotal > 6) {
-            event.preventDefault();
-            let removalAmt = newTotal - 6;
-            alert(`you need to remove at least ${removalAmt} more image${removalAmt === 1 ? '' : 's'}`)
-        }
-    });
-</script>
+    </form>
+</section>
 
-<% include ../partials/footer %>
+<script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+<script>
+    CKEDITOR.replace('description');
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+<script src="/javascripts/bootstrap.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
+<script src="/javascripts/index.js"></script>
+
+</body>
+
+</html>

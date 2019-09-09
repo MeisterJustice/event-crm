@@ -3,9 +3,11 @@ const Schema = mongoose.Schema;
 const eventSchema = new Schema({
     title: String,
     description: String,
+    country: String,
     city: String,
     venue: String,
-    mainImage: String,
+    eventDate: String,
+    eventTime: String,
     images: [{url: String, public_id: String}],
     author: {
         id: {

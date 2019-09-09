@@ -2,4 +2,4 @@
 .env
 
 # ignore auth.js
-auth.js
+/config/auth.js

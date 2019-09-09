@@ -117,6 +117,11 @@ p {
     width: 100%;
     height: 100%;
     overflow: hidden;
+    border:1px solid transparent;
+    border-width:0 0 10px 0;
+    -webkit-border-radius:0% 0% 135% 0% / 0% 0% 65% 0%; 
+    -moz-border-radius:0% 0% 135% 0% / 0% 0% 65% 0%; 
+    border-radius:0% 0% 135% 0% / 0% 0% 65% 0%;
 }
 
 video {
@@ -424,6 +429,10 @@ video {
 /* ===============================================================================
                                     EVENT
 ================================================================================*/
+#event-section {
+    margin-bottom: 150px;
+}
+
 .event-row:hover {
     text-decoration: none;
 }
@@ -448,8 +457,24 @@ video {
     background: #333;
     color: #fff;
     position: relative;
-    height: 400px;
+    height: 500px;
     border-top: none;
+    position: relative;
+    margin-bottom: 60px;
+}
+
+#create-section:after {
+    position: absolute;
+    height: 100%;
+    content: '';
+    background: inherit;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    transform-origin: bottom left;
+    transform: skewY(-4deg);
 }
 
 
@@ -845,8 +870,25 @@ video {
 #blog-page-body .row .banner {
     width: 100%;
     height: 100vh;
-    background: #000000;  /* fallback for old browsers */
+    background: #000000;
     background: -webkit-linear-gradient(to right, #434343, #000000);
     z-index: 0;
     background: linear-gradient(to right, #434343, #000000);
+}
+
+@media (max-width: 768px) {
+    #blog-page-body .row .banner {
+        width: 100%;
+        height: 40vh;
+        background: #000000;  
+        background: -webkit-linear-gradient(to right, #434343, #000000);
+        z-index: 0;
+        background: linear-gradient(to right, #434343, #000000);
+    }
+}
+
+/* EVENT CREATE PAGE */
+#event-new form span {
+    cursor: pointer;
+    font-size: 30px;
 }

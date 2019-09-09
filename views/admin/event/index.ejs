@@ -1,38 +1,117 @@
-<% include ../../partials/header %>
+<% include ../../partials/admin-header %>
+
+<section id="action" class="py-4 mb-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <a href="#" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addEventModal">
+                    <i class="fa fa-plus"></i> Add Event
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="blog-list">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Latest Events</h4>
+                        </div>
+                        <div class="table-responsive">
+
+                            <table class="table table-striped">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Title</th>
+                                        <th>Aurthor</th>
+                                        <th>City</th>
+                                        <th>Date Posted</th>
+                                        <th>Comments</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <% for(let i = events.length - 1; i >= 0; i--) { %>
+                                    
+                                    <tr>
+                                        <td scope="row"><%=i%></td>
+                                        <td><%=events[i].title%></td>
+                                        <td><%=events[i].author.username%></td>
+                                        <td><%=events[i].city%></td>
+                                        <td><%=events[i].dateCreated.toDateString()%></td>
+                                        <td><%=events[i].comments.length%></td>
+                                        <td><a href="/event/<%=events[i].id%>" class="btn btn-sm btn-secondary">
+                                                <i class="fa fa-angle-double-right"></i> view
+                                            </a>
+                                        </td>
+                                        <td><a href="/admin/event/<%=events[i].id%>/edit" class="btn btn-sm btn-secondary">
+                                            edit
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <form class="d-inline" action="/admin/event/<%=events[i].id%>?_method=DELETE" method="post">
+                                                <button class="btn btn-sm btn-secondary">delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <%}%>
+                                            
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+    </div>
+</section>
 
 
-<h3>
-    <a href="/admin/event/new">new event post</a>
-</h3>
+<div class="modal fade" id="addEventModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Add New Event</h5>
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control">
+                    </div>
 
-<div>
-    <% events.forEach((event) => { %>
-    <div>
-        <%=event.title%>
-    </div>
-    <div>
-        <%=event.description%>
-    </div>
-    <div>
-        <%=event.city%>
-    </div>
-    <div>
-        <%=event.venue%>
-    </div>
 
-    <div>
-        <img src="<%=event.images%>" alt="">
+                    <div class="form-group">
+                        <label for="file">image upload</label>
+                        <input type="file" class="form-control-file">
+                        <small class="form-text text-muted">Max Size 3mb</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="body">Body</label>
+                        <textarea name="description" class="form-control"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">close</button>
+                <button class="btn btn-primary" data-dismiss="modal">save changes</button>
+            </div>
+        </div>
     </div>
-    <div>
-        <%=event.dateCreated%>
-    </div>
-    <a href="/admin/event/<%=event.id%>/edit">edit</a>
-    <form action="/admin/event/<%=event.id%>?_method=DELETE" method="post">
-        <button>delete</button>
-    </form>
-    <br>
-    <br>
-    <% }) %>
 </div>
 
-<% include ../../partials/footer %>
+<% include ../../partials/admin-footer %>

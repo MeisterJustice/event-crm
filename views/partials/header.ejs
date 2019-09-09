@@ -5,17 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.css">
-    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="/stylesheets/bootstrap.css">
     <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.1/css/lightbox.css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'></script>
-    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css' rel='stylesheet' />
     <link rel="stylesheet" href="/stylesheets/style.css">
     <title>event-crm</title>
 </head>
@@ -32,7 +27,7 @@
                 <a class="nav-link my-auto ml-auto" href="/register">register</a>
                 <a class="nav-link my-auto" href="/login">login</a>
             <%} else { %>
-                <a href="#" class="text-muted my-auto ml-auto text-dark">signed in as <%=currentUser.username%></a>
+                <a href="#" class="text-muted my-auto ml-auto text-dark">welcome <%=currentUser.username%></a>
                 <a class="nav-link my-auto" href="/logout">logout</a>
             <%}%>
             <form class="form-inline">
@@ -73,7 +68,7 @@
             </div>
         <% } %>
         <% if(success && success.length > 0){ %>
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success" style="z-index: 999" role="alert">
             <%=success%>
             </div>
         <% } %>

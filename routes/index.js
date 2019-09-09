@@ -11,7 +11,11 @@ import {
   postLogin,
   getLogout,
   postForm,
-  emailSignup
+  emailSignup,
+  forgotPassword,
+  putForgotPassword,
+  resetPassword,
+  putResetPassword
 } from '../controllers/index';
 
 import {
@@ -37,5 +41,13 @@ router.get("/login", errorHandler(getLogin));
 router.post("/login", errorHandler(postLogin));
 
 router.get("/logout", errorHandler(getLogout));
+
+router.get('/forgot-password', forgotPassword);
+
+router.put('/forgot-password', errorHandler(putForgotPassword));
+
+router.get('/reset-password/:token', errorHandler(resetPassword));
+
+router.put('/reset-password/:token', errorHandler(putResetPassword));
 
 export default router;

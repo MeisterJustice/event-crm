@@ -28,10 +28,9 @@ export const postEvent = async(req, res, next) => {
     req.body.author = author;
     
     req.body.images = [];
-    let images = await req.body.images;
     for(const file of req.files) {
         let image = await cloudinary.v2.uploader.upload(file.path);
-        images.push({
+        req.body.images.push({
             url: image.secure_url,
             public_id: image.public_id
         });
@@ -53,41 +52,12 @@ export const getEdit = async(req, res, next) => {
 }
 
 export const putEvent = async(req, res, next) => {
-    let event = await Event.findById(req.params.id);
-		if(req.body.deleteImages && req.body.deleteImages.length) {			
-			let deleteImages = req.body.deleteImages;
-			for(const public_id of deleteImages) {
-				await cloudinary.v2.uploader.destroy(public_id);
-				for(const image of event.images) {
-					if(image.public_id === public_id) {
-						let index = event.images.indexOf(image);
-						event.images.splice(index, 1);
-					}
-				}
-			}
-		}
-		if(req.files) {
-			for(const file of req.files) {
-				let image = await cloudinary.v2.uploader.upload(file.path);
-				event.images.push({
-					url: image.secure_url,
-					public_id: image.public_id
-				});
-			}
-		}
-    event.title = req.body.title;
-    event.description = req.body.description;
-    event.city = req.body.city;
-    event.venue = req.body.venue;
-    event.lat = req.body.lat;
-    event.lng = req.body.lng;
-    event.mainImage = req.body.mainImage;
-    event.save();
+    let event = await Event.findByIdAndUpdate(req.params.id, req.body);
     res.redirect(`/event/${event.id}`);
 }
 
 export const deleteEvent = async(req, res, next) => {
     let event = await Event.findById(req.params.id);
-    await Event.findByIdAndRemove();
+    await Event.findByIdAndDelete();
     res.redirect("/event");
 }

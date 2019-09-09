@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/stylesheets/auth.css">
+    <title>event-crm | login</title>
+</head>
+
+<body>
+    <div class="se-pre-con"></div>
+
+
+    <section id="login">
+        <div class="row">
+            <div class="side d-none d-lg-block col-12 col-lg-6 ">
+                <div class="logo-div d-flex flex-column justify-content-center align-items-center">
+                    <div class="logo">
+                        e
+                    </div>
+                </div>
+                <div class="side-desc d-flex flex-column justify-content-start align-items-center">
+                    <div>
+                        <h1>continue our partnership </h1>
+                    </div>
+                    <div class="pt-3">
+                        <p>you're just a click away from reaching us if you ever need our services!</p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-lg-6 p-0">
+                <div class="side-nav d-none d-lg-block">
+                    <ul class="nav nav-pills nav-fill">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">about</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">contact</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/blog">blog</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/event">event</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="p-0 m-0">
+                    <% if(error && error.length > 0){ %>
+                        <div class="alert alert-danger text-center" role="alert">
+                        <%=error%>
+                        </div>
+                    <% } %>
+                    <% if(success && success.length > 0){ %>
+                        <div class="alert alert-success text-center" role="alert">
+                        <%=success%>
+                        </div>
+                    <% } %>
+                </div>
+                <div class="side-r d-flex justify-content-center align-items-center">
+
+                    <div id="menu-bar" class="d-lg-none">
+                        <div id="menu" onclick="onClickMenu()">
+                            <div id="bar1" class="bar"></div>
+                            <div id="bar2" class="bar"></div>
+                            <div id="bar3" class="bar"></div>
+                        </div>
+                        <ul class="navv" id="nav">
+                            <li><a href="/">home</a></li>
+                            <li><a href="#">about</a></li>
+                            <li><a href="#">contact</a></li>
+                            <li><a href="/event">event</a></li>
+                            <li><a href="/blog">blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="menu-bg d-lg-none" id="menu-bg"></div>
+
+
+                    <div class="login pt-5 pt-lg-0 d-flex justify-content-center align-items-center">
+                        <div></div>
+                        <form action="/forgot-password?_method=PUT" method="POST">
+                            <h3 class="mb-5 display-5">enter email to reset password</h3>
+                            <input type="email" name="email" placeholder="email" autofocus>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="forgot">
+                                    <a class="a" href="/login">remember? login</a>
+                                </div>
+                            </div>
+                            <input class="login-btn" type="submit" value="Reset Password">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.js"></script>
+    <script src="/javascripts/index.js"></script>
+</body>
+
+</html>

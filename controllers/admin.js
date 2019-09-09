@@ -1,15 +1,18 @@
 import User from '../models/user';
 import Blog from '../models/blog';
 import Event from '../models/event';
+import Email from '../models/email-signup';
 
 export const getAdmin = async (req, res, next) => {
-    let getUsers = await User.find({});
-    let getBlogs = await Blog.find({});
-    let getEvents = await Event.find({});
+    let users = await User.find({});
+    let blogs = await Blog.find({});
+    let events = await Event.find({});
+    let emails = await Email.find({});
     res.render("admin/index", {
-        getUsers,
-        getBlogs,
-        getEvents
+        users,
+        blogs,
+        events,
+        emails
     }); 
 }
 
@@ -17,6 +20,15 @@ export const getBlog = async (req, res, next) => {
     let blogs = await Blog.find({});
     res.render("admin/blog/index", {
         blogs
+    });
+}
+
+export const getUser = async (req, res, next) => {
+    let users = await User.find({});
+    let emails = await Email.find({});
+    res.render("admin/user", {
+        users,
+        emails
     });
 }
 
@@ -69,7 +81,7 @@ export const putBlog = async (req, res, next) => {
 }
 
 export const deleteBlog = async (req, res, next) => {
-    let deleteBlog = await Blog.findByIdAndRemove(req.params.blog_id)
+    let deleteBlog = await Blog.findByIdAndDelete(req.params.blog_id)
     res.redirect("/admin/blog");
 }
 
@@ -84,6 +96,6 @@ export const putEvent = async (req, res, next) => {
 }
 
 export const deleteEvent = async (req, res, next) => {
-    let deleteEvent = await Event.findByIdAndRemove(req.params.event_id)
+    let deleteEvent = await Event.findByIdAndDelete(req.params.event_id)
     res.redirect("/admin/event");
 }

@@ -1,31 +1,115 @@
-<% include ../../partials/header %>
+<% include ../../partials/admin-header %>
+
+<section id="action" class="py-4 mb-4 bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <a href="#" class="btn btn-primary btn-lg ml-3" data-toggle="modal" data-target="#addPostModal">
+                    <i class="fa fa-plus"></i> Add Post
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="blog-list">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4>Latest Posts</h4>
+                        </div>
+                        <div class="table-responsive">
+
+                            <table class="table table-striped">
+                                <thead class="bg-dark text-white">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Title</th>
+                                        <th>Aurthor</th>
+                                        <th>Date Posted</th>
+                                        <th>Comments</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <% for(let i = blogs.length - 1; i >= 0; i--) { %>
+                                    
+                                    <tr>
+                                        <td scope="row"><%=i%></td>
+                                        <td><%=blogs[i].title%></td>
+                                        <td><%=blogs[i].author.username%></td>
+                                        <td><%=blogs[i].dateCreated.toDateString()%></td>
+                                        <td><%=blogs[i].comments.length%></td>
+                                        <td><a href="/blog/<%=blogs[i].id%>" class="btn btn-sm btn-secondary">
+                                                <i class="fa fa-angle-double-right"></i> view
+                                            </a>
+                                        </td>
+                                        <td><a href="/admin/blog/<%=blogs[i].id%>/edit" class="btn btn-sm btn-secondary">
+                                            edit
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <form class="d-inline" action="/admin/blog/<%=blogs[i].id%>?_method=DELETE" method="post">
+                                                <button class="btn btn-sm btn-secondary">delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    <%}%>
+                                            
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+    </div>
+</section>
 
 
-<h3>
-    <a href="/admin/blog/new">new blog post</a>
-</h3>
-<div>
-    <% blogs.forEach((blog) => { %>
-    <div>
-        <%=blog.title%>
+<div class="modal fade" id="addPostModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Add Blog Post</h5>
+                <button class="close" data-dismiss="modal"><span>&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form action="">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" class="form-control">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="file">image upload</label>
+                        <input type="file" class="form-control-file">
+                        <small class="form-text text-muted">Max Size 3mb</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="body">Body</label>
+                        <textarea name="description" class="form-control"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">close</button>
+                <button class="btn btn-primary" data-dismiss="modal">save changes</button>
+            </div>
+        </div>
     </div>
-    <div>
-        <%-blog.description.substring(1, 200)%>
-    </div>
-    <div>
-        <img src="<%=blog.image%>" alt="">
-    </div>
-    <div>
-        <%=blog.dateCreated%>
-    </div>
-    <a href="/blog/<%=blog.id%>">view</a>
-    <a href="/admin/blog/<%=blog.id%>/edit">edit</a>
-    <form action="/admin/blog/<%=blog.id%>?_method=DELETE" method="post">
-        <button>delete</button>
-    </form>
-    <br>
-    <br>
-    <% }) %>
 </div>
 
-<% include ../../partials/footer %>
+<% include ../../partials/admin-footer %>

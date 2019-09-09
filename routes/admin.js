@@ -1,13 +1,15 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
 import {
-  getAdmin, getBlog, getCreateBlog, postBlog, getEvent, getCreateEvent, postEvent, getEditBlog, putBlog, deleteBlog, getEditEvent, putEvent, deleteEvent
+  getAdmin, getBlog, getUser, getCreateBlog, postBlog, getEvent, getCreateEvent, postEvent, getEditBlog, putBlog, deleteBlog, getEditEvent, putEvent, deleteEvent
 } from '../controllers/admin'
 import { errorHandler } from '../middleware';
 
 router.get('/', errorHandler(getAdmin));
 
 router.get("/blog", errorHandler(getBlog));
+
+router.get("/user", errorHandler(getUser));
 
 router.get('/blog/new', errorHandler(getCreateBlog));
 
