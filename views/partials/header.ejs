@@ -27,7 +27,7 @@
                 <a class="nav-link my-auto ml-auto" href="/register">register</a>
                 <a class="nav-link my-auto" href="/login">login</a>
             <%} else { %>
-                <a href="#" class="text-muted my-auto ml-auto text-dark">welcome <%=currentUser.username%></a>
+                <a href="/profile" class="my-auto ml-auto text-dark">welcome <%=currentUser.username%></a>
                 <a class="nav-link my-auto" href="/logout">logout</a>
             <%}%>
             <form class="form-inline">
@@ -55,6 +55,7 @@
                 <li><a href="/register">register</a></li>
                 <li><a href="/login">login</a></li>
             <%} else { %>
+                <li><a href="/profile">profile</a></li>
                 <li><a href="/logout">logout</a></li>
             <%}%>
         </ul>

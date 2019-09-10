@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const { storage } = require('../cloudinary');
+const upload = multer({ storage });
 
 import {
   getIndex,
@@ -11,9 +14,11 @@ import {
   postLogin,
   getLogout,
   getProfile,
-  // updateProfile,
+  updateProfile,
   postForm,
   emailSignup,
+  donate,
+  getDonate,
   forgotPassword,
   putForgotPassword,
   resetPassword,
@@ -24,11 +29,21 @@ import {
   errorHandler
 } from '../middleware';
 
-import isLoggedIn from '../validation/isLoggedIn';
+import {
+  isLoggedIn,
+  isEventOwner,
+  checkIfUserExists,
+  isValidPassword,
+	changePassword
+} from '../validation/index';
 
 router.get('/', errorHandler(getIndex));
 
 router.post('/', postForm);
+
+router.post('/paystack/pay', donate);
+
+router.get('/paystack/callback', getDonate);
 
 router.post('/email-signup', errorHandler(emailSignup));
 
@@ -38,7 +53,7 @@ router.get('/auth/facebook/callback', postFacebookLogin);
 
 router.get('/register', errorHandler(getRegister));
 
-router.post("/register", errorHandler(postRegister));
+router.post("/register", errorHandler(checkIfUserExists), upload.single('image'), errorHandler(postRegister));
 
 router.get("/login", errorHandler(getLogin));
 
@@ -46,9 +61,9 @@ router.post("/login", errorHandler(postLogin));
 
 router.get("/logout", errorHandler(getLogout));
 
-router.get('/profile',isLoggedIn, errorHandler(getProfile));
+router.get('/profile', isLoggedIn, errorHandler(getProfile));
 
-// router.put('/profile/:user_id', errorHandler(updateProfile));
+router.put('/profile', isLoggedIn, upload.single('image'), errorHandler(isValidPassword), errorHandler(changePassword), errorHandler(updateProfile) );
 
 router.get('/forgot-password', forgotPassword);
 

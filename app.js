@@ -3,6 +3,7 @@ import createError from 'http-errors';
 import express from 'express';
 import { createServer } from 'http';
 import path from 'path';
+import favicon from 'serve-favicon';
 import cookieParser from 'cookie-parser';
 import flash from 'connect-flash';
 import mongoose from 'mongoose';
@@ -36,6 +37,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.static(path.join(__dirname, '/public')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 
 app.use(methodOverride("_method"));
 
@@ -96,7 +98,7 @@ app.use(function(err, req, res, next) {
 });
 
 // Set port
-const port = process.env.PORT || 7000;
+const port = process.env.PORT || 5000;
 
 // Use mongoose promise library
 mongoose.Promise = require('bluebird');

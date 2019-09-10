@@ -1,40 +1,27 @@
 import Event from '../models/event';
 import Blog from '../models/blog';
-import cloudinary from 'cloudinary';
-import cloudinaryAuth from '../config/auth';
-
-// cloudinary configuration
-cloudinary.config({
-    cloud_name: cloudinaryAuth.cloudinaryUpload.cloud_name,
-    api_key: cloudinaryAuth.cloudinaryUpload.api_key,
-    api_secret: cloudinaryAuth.cloudinaryUpload.api_secret
-})
+import {cloudinary} from '../cloudinary';
 
 export const getEvent = async(req, res, next) => {
     let findEvent = await Event.find({});
     res.render("event/index", {findEvent});
   }
+  
 
   export const getCreateEvent = async(req, res, next) => {
     res.render("event/new")
 }
 
 export const postEvent = async(req, res, next) => {
-    let author = await {
-        id: req.user._id,
-        username: req.user.username
-    }
-
-    req.body.author = author;
+    req.body.author = req.user._id;
     
     req.body.images = [];
     for(const file of req.files) {
-        let image = await cloudinary.v2.uploader.upload(file.path);
         req.body.images.push({
-            url: image.secure_url,
-            public_id: image.public_id
+            url: file.secure_url,
+            public_id: file.public_id
         });
-    }    
+    }   
 
     await Event.create(req.body);
     res.redirect("/event");
