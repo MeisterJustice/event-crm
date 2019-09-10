@@ -745,6 +745,10 @@ video {
     
 }
 
+#post-body #info {
+    padding-top: 250px;
+}
+
 #post-body .post-body-share {
     margin-top: 250px;
 }
@@ -756,6 +760,10 @@ video {
 @media (max-width: 768px) {
     #post-body .post-body-share {
         margin-top: 50px;
+    }
+
+    #post-body #info {
+        padding-top: 50px;
     }
 
     #post-body .row .mll {

@@ -8,7 +8,6 @@ import cookieParser from 'cookie-parser';
 import flash from 'connect-flash';
 import mongoose from 'mongoose';
 import logger from 'morgan';
-import bodyParser from 'body-parser'; 
 import methodOverride from 'method-override';
 import passport from 'passport';
 // import seedPosts from './seeds';
@@ -43,13 +42,10 @@ app.use(methodOverride("_method"));
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(methodOverride('_method'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+
 app.use(flash());
 
 app.use(require("express-session")({
