@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 const donateSchema = new Schema({
     full_name: {
         type: String,
-        required: true,
+        required: true
     },
     email: {
         type: String,

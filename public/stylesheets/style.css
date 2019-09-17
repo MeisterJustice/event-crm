@@ -15,6 +15,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
 }
 
 #navbar {
@@ -124,8 +125,9 @@ p {
     border-radius:0% 0% 135% 0% / 0% 0% 65% 0%;
 }
 
-video {
+#home img {
     object-fit: cover;
+    object-position: center;
     width: 100%;
     height: 100%;
     position: absolute;
@@ -139,6 +141,9 @@ video {
     left: 0;
     width: 100%;
     height: 100vh;
+    background: #1b1b1b;
+    opacity: 0.8;
+    position: absolute;
 }
 
 .header {
@@ -246,6 +251,14 @@ video {
     padding: 20px 0;
     margin-bottom: 20px;
     cursor: pointer;
+}
+
+#services {
+    border:1px solid transparent;
+    border-width:0 0 10px 0;
+    -webkit-border-radius:0% 0% 135% 0% / 0% 0% 65% 0%; 
+    -moz-border-radius:0% 0% 135% 0% / 0% 0% 65% 0%; 
+    border-radius:0% 0% 135% 0% / 0% 0% 65% 0%;
 }
 
 .service-item-icon i {
@@ -382,6 +395,10 @@ video {
 #about-bg-diagonal {
     width: 100%;
     height: 700px;
+}
+
+#about {
+    background: #f4f4f4;
 }
 
 @media (max-width: 768px) {

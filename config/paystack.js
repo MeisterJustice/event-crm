@@ -1,5 +1,5 @@
 const paystack = (request) => {
-    const MySecretKey = process.env.PAYSTACK_SECRET_KEY;
+    const MySecretKey = `Bearer ${process.env.PAYSTACK_SECRET_KEY}`;
     const initializePayment = (form, mycallback) => {
         const options = {
             url: 'https://api.paystack.co/transaction/initialize',

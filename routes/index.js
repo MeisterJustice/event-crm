@@ -6,6 +6,7 @@ const upload = multer({ storage });
 
 import {
   getIndex,
+  privacy,
   getFacebookLogin,
   postFacebookLogin,
   getRegister,
@@ -18,7 +19,7 @@ import {
   postForm,
   emailSignup,
   donate,
-  getDonate,
+  getCallback,
   forgotPassword,
   putForgotPassword,
   resetPassword,
@@ -41,9 +42,11 @@ router.get('/', errorHandler(getIndex));
 
 router.post('/', postForm);
 
-router.post('/paystack/pay', donate);
+router.get('/privacy-policy', privacy);
 
-router.get('/paystack/callback', getDonate);
+router.post('/pay', donate);
+
+router.get('/paystack/callback', getCallback);
 
 router.post('/email-signup', errorHandler(emailSignup));
 

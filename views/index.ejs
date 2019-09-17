@@ -5,23 +5,20 @@
 
     <div class="video-container">
         <div class="v">
-            <video playsinline autoplay muted loop id="bgvid">
-                <source src="/videos/landing.mp4" type="video/mp4">
-            </video>
+            <img src="/videos/cover.gif" alt="">
         </div>
-
-        <div class="header">
-            <div class="d-flex flex-column align-items-center justify-content-between">
-                <div>
-                    <h1 class="text-center">planning events can be easier!</h1>
+    </div>
+    <div class="header">
+        <div class="d-flex flex-column align-items-center justify-content-between">
+            <div>
+                <h1 class="text-center">planning events can be easier!</h1>
+            </div>
+            <div>
+                <div class="d-md-inline d-block pr-md-3 pt-">
+                    <a class="btn mx-auto btn-lg btn-general my-3 my-md-0 btn-white" href="/event/new">create events</a>
                 </div>
-                <div>
-                    <div class="d-md-inline d-block pr-md-3 pt-">
-                        <a class="btn mx-auto btn-lg btn-general my-3 my-md-0 btn-white" href="/event/new">create events</a>
-                    </div>
-                    <div class="d-md-inline d-block pl-md-3 pt- pt-lg-0">
-                        <a class="btn mx-auto btn-lg btn-general btn-white" href="/event">create events</a>
-                    </div>
+                <div class="d-md-inline d-block pl-md-3 pt- pt-lg-0">
+                    <a class="btn mx-auto btn-lg btn-general btn-white" href="/event">browse events</a>
                 </div>
             </div>
         </div>
@@ -135,10 +132,7 @@
                             </div>
                             <div id="about-desc" class="wow fadeInDown container-fluid" data-wow-duration="1s"
                                 data-wow-delay=".5s">
-                                <p class="text-justify">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Porro
-                                    asperiores officiis
-                                    dicta sint quidem dignissimos autem reprehenderit fugit aspernatur modi iste fugit
-                                    aspernatur modi iste.</p>
+                                <p class="text-justify">Two Naija boys who believe hosting events should carry plenty vibe while making it a lot more convenient for event planners to set it up.</p>
                             </div>
                             <div id="about-btn" class="wow animated fadeInUp container-fluid" data-wow-duration="1s"
                                 data-wow-delay=".5s">
@@ -170,94 +164,28 @@
             of the one of the posts below!</p>
     </div>
     <div class="row wow fadeInUp container-fluid" data-wow-duration="1s" data-wow-delay=".5s">
+        <% for(var i = event.length - 1; i >= event.length - 4; i--) {%>
         <div class="col-12 event-op col-lg-6 mx-md-auto mt-3">
-            <a href="#" class="event-row">
+            <a href="/event/<%=event[i].id%>" class="event-row">
                 <div class="card mx-auto mb-3" style="max-width: 700px;">
                     <div class="row no-gutters">
                         <div class="col-md-4">
-                            <img src="https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196__340.jpg" height="100%"
-                                class="card-img lazy" alt="...">
+                            <img src="<%=event[i].images[1]%>" height="100%"
+                                class="card-img lazy" alt="<%=event[i].title%> image">
                         </div>
                         <div class="col-md-8 cardd">
                             <div class="card-body">
-                                <h4 class="card-title text-dark">random event</h4>
-                                <p class="card-text text-justify">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Quae
-                                    sapiente repellat deserunt quia sint adipisci rerum fugiat animi repudiandae dolore.
+                                <h4 class="card-title text-dark"><%=event[i].title%></h4>
+                                <p class="card-text text-justify"><%-event[i].description.substring(0, 200)%>
                                 </p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p class="card-text"><small class="text-muted">posted on <%=event[i].dateCreated.toDateString()%></small></p>
                             </div>
                         </div>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="col-12 event-op col-lg-6 mx-md-auto mt-3">
-            <a href="#" class="event-row">
-                <div class="card mx-auto mb-3" style="max-width: 700px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196__340.jpg" height="100%"
-                                class="card-img lazy" alt="...">
-                        </div>
-                        <div class="col-md-8 cardd">
-                            <div class="card-body">
-                                <h4 class="card-title text-dark">random event</h4>
-                                <p class="card-text text-justify">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Quae
-                                    sapiente repellat deserunt quia sint adipisci rerum fugiat animi repudiandae dolore.
-                                </p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-12 event-op col-lg-6 mx-md-auto mt-3">
-            <a href="#" class="event-row">
-                <div class="card mx-auto mb-3" style="max-width: 700px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196__340.jpg" height="100%"
-                                class="card-img lazy" alt="...">
-                        </div>
-                        <div class="col-md-8 cardd">
-                            <div class="card-body">
-                                <h4 class="card-title text-dark">random event</h4>
-                                <p class="card-text text-justify">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Quae
-                                    sapiente repellat deserunt quia sint adipisci rerum fugiat animi repudiandae dolore.
-                                </p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="col-12 event-op col-lg-6 mx-md-auto mt-3">
-            <a href="#" class="event-row">
-                <div class="card mx-auto mb-3" style="max-width: 700px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196__340.jpg" height="100%"
-                                class="card-img lazy" alt="...">
-                        </div>
-                        <div class="col-md-8 cardd">
-                            <div class="card-body">
-                                <h4 class="card-title text-dark">random event</h4>
-                                <p class="card-text text-justify">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. Quae
-                                    sapiente repellat deserunt quia sint adipisci rerum fugiat animi repudiandae dolore.
-                                </p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
+        <%}%>
     </div>
     <div class="text-left mt-2 container-fluid">
         <a class="btn btn-lg btn-general btn-blue ml-3" href="/event" role="button" title="Our Work">see more
@@ -376,49 +304,30 @@
 <!-- BLOG SECTION -->
 <section id="blog" class="mt-5 container-fluid">
     <div class="content-title ml-0 ml-lg-3 contain">
-        <h3 class="h wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">popular blog
+        <h3 class="h wow fadeInDown" data-wow-duration="1s" data-wow-delay=".5s">latest blog
             posts</h3>
         <div>
             <div class="content-title-underline wow h fadeInDown" data-wow-duration="1s" data-wow-delay=".5s"></div>
         </div>
         <p class="text-justify wow fadeInDown mx-auto text-center" data-wow-duration="1s" data-wow-delay=".5s">We’ve
-            spent dozens of hours curating the best posts, tips, and guide out there for improving your event planning
+            spent dozens of hours creating the best posts, tips, and guide out there for improving your event planning
             skills. Check out our guides below</p>
     </div>
     <div class="card-deck container-fluid mx-md-auto">
-        <div class="card">
-            <a href="#">
-                <img class="card-img-top" src="https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196__340.jpg"
-                    alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title text-dark">blog title goes here</h4>
+        <% for(var i = blog.length - 1; i >= blog.length - 4; i--) {%>
 
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="#">
-                <img class="card-img-top" src="https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196__340.jpg"
-                    alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title text-dark">blog title goes here</h4>
-
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </a>
-        </div>
-        <div class="card">
-            <a href="#">
-                <img class="card-img-top" src="https://cdn.pixabay.com/photo/2014/09/24/14/29/mac-459196__340.jpg"
-                    alt="Card image cap">
-                <div class="card-body">
-                    <h4 class="card-title text-dark">blog title goes here</h4>
-
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </a>
-        </div>
+            <div class="card">
+                <a href="/blog/<%=blog[i].id%>">
+                    <img class="card-img-top" src="<%=blog[i].image%>"
+                        alt="<%=blog[i].title%> image">
+                    <div class="card-body">
+                        <h4 class="card-title text-dark"><%=blog[i].title%></h4>
+    
+                        <p class="card-text"><small class="text-muted"><%=blog[i].dateCreated.toDateString()%></small></p>
+                    </div>
+                </a>
+            </div>
+        <%}%>
     </div>
 </section>
 

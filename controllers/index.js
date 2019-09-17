@@ -1,6 +1,7 @@
 require('dotenv').config()
 import User from '../models/user';
 import Event from '../models/event';
+import Blog from '../models/blog';
 import Email from '../models/email-signup';
 import Donor from '../models/donate';
 import passport from 'passport';
@@ -15,8 +16,14 @@ import sgMail from '@sendgrid/mail';
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const {initializePayment, verifyPayment} = require('../config/paystack')(request);
 
-export const getIndex = (req, res, next) => {
-  res.render('index');
+export const getIndex = async(req, res, next) => {
+  let blog = await Blog.find({});
+  let event = await Event.find({});
+  res.render('index', {blog, event});
+}
+
+export const privacy = async(req, res, next) => {
+  res.render('privacy');
 }
 
 export const postForm = async (req, res, next) => {
@@ -43,15 +50,15 @@ export const donate = (req, res, next) => {
         if(error){
             //handle errors
             console.log(error);
-            return res.redirect('/');
+            return;
        }
-       let response = JSON.parse(body);
-       console.log(response)
+       const response = JSON.parse(body);
+       console.log(response);
        res.redirect(response.data.authorization_url)
     });
 }
 
-export const getDonate = (req, res, next) => {
+export const getCallback = (req, res, next) => {
   const ref = req.query.reference;
     verifyPayment(ref, (error,body)=>{
         if(error){
@@ -59,23 +66,22 @@ export const getDonate = (req, res, next) => {
             console.log(error)
             return res.redirect('/error');
         }
-        response = JSON.parse(body);
-        const data = _.at(response.data, ['reference', 'amount','customer.email', 'metadata.full_name']);
-        [reference, amount, email, full_name] = data;
-        newDonor = {reference, amount, email, full_name}
-        const donor = new Donor(newDonor)
-        donor.save().then((donor)=>{
+        const response = JSON.parse(body);
+        req.body.reference = response.data.reference;
+        req.body.amount = response.data.amount
+        req.body.full_name = response.data.full_name;
+        req.body.email = response.data.customer.email;
+        console.log(response.data)
+        Donor.create(req.body).then((donor)=>{
             if(donor){
-                res.redirect('/blog');
+                // res.redirect('/receipt/'+donor._id);
+                res.redirect('/event');
             }
         }).catch((e)=>{
-            res.redirect('/error');
+            res.redirect('/admin');
         })
     })
 }
-
-
-
 
 export const emailSignup = async (req, res, next) => {
   // save to database
