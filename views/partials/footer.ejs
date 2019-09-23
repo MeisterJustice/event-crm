@@ -65,8 +65,11 @@
                                     <li class="mb-2">
                                         <a href="/about">about >>></a>
                                     </li>
+                                    
                                     <li>
-                                        <a href="#">buy us a coffee >>></a>
+                                        <div style="cursor: pointer; color: #34c6d3;" data-toggle="modal" data-target="#exampleModal">
+                                             buy us a coffee >>>
+                                        </div>
                                     </li>
                                 </ul>
                             </p>
@@ -78,6 +81,44 @@
         </div>
     </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title ml-auto">Buy us a coffee</h5>
+      
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <h6 class="modal-title d-block mt-2 text-center">We need all the support we can get</h6>
+    <div class="modal-body">
+
+      <form action="/pay" method="post">
+        <div class="row">
+          <div class="col-12">
+            <input type="text" name="full_name" placeholder="full name" class="form-control">
+          </div>
+          <div class="col-12 mt-2">
+            <input type="email" name="email" placeholder="email" class="form-control">
+          </div>
+          <div class="col-12 mt-2">
+            <input type="number" name="amount" placeholder="amount" class="form-control">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <div class="btn btn-secondary" data-dismiss="modal">Close</div>
+          <button class="btn btn-primary">Buy!</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+</div>
 
 <div id="footer2" class="mt-0 pt-0 mb-0 container-fluid">
     <p class="text-center text-white mt-3">

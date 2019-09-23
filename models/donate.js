@@ -16,7 +16,8 @@ const donateSchema = new Schema({
     reference: {
         type: String,
         required: true
-    }
+    },
+    datePayed: {type: Date, default: Date.now}
 });
 
 export default mongoose.model("Donate", donateSchema);

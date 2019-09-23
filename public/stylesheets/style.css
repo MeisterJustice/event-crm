@@ -40,6 +40,7 @@ body {
 
 nav.scrolled {
     background-color: #fff;
+    position: fixed;
     -webkit-box-shadow: 0 8px 6px -4px #eeebeb;
 	-moz-box-shadow: 0 8px 6px -4px #eeebeb;
 	box-shadow: 0 8px 6px -4px #eeebeb;
@@ -762,9 +763,10 @@ p {
     
 }
 
-#post-body #info {
-    padding-top: 250px;
+#post-body{
+    padding-top: 100px;
 }
+
 
 #post-body .post-body-share {
     margin-top: 250px;
@@ -779,7 +781,7 @@ p {
         margin-top: 50px;
     }
 
-    #post-body #info {
+    #post-body {
         padding-top: 50px;
     }
 
@@ -825,6 +827,7 @@ p {
     background-image: url('/images/event-cover.jpg') !important;
     background-position: center !important;
     background-size: cover !important;
+    background-repeat: no-repeat !important;
     border-radius: 0;
 }
 
@@ -837,8 +840,27 @@ p {
         margin-top: 50px;
     }
 
+    #info {
+        position: relative;
+    }
+
     #event-body .row .mll {
         padding-left: 50px;
+    }
+}
+
+#info.sticky-top {
+    z-index: 0;
+}
+
+#post-body .row .sticky-top {
+    z-index: 0;
+}
+
+@media (min-width: 1181px) {
+    #info {
+        padding-top: 130px !important;
+        display: block !important;
     }
 }
 

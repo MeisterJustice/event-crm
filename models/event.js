@@ -8,6 +8,7 @@ const eventSchema = new Schema({
     venue: String,
     eventDate: String,
     eventTime: String,
+    color: String,
     images: [{url: String, public_id: String}],
     author: {
         id: {
@@ -22,6 +23,12 @@ const eventSchema = new Schema({
            ref: "EventComment"
         }
     ],
+    tickets: 
+        {
+           type: mongoose.Schema.Types.ObjectId,
+           ref: "Ticket"
+        }
+    ,
     dateCreated: {type: Date, default: Date.now},
 })
 export default mongoose.model("Event", eventSchema);

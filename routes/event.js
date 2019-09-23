@@ -7,7 +7,7 @@ import {
     isLoggedIn,
     isEventOwner
   } from '../validation/index';
-import { getEvent, getCreateEvent, postEvent, showEvent, getEdit, putEvent, deleteEvent } from '../controllers/event';
+import { getEvent, getCreateEvent, postEvent, postTicket, showEvent, getEdit, putEvent, deleteEvent, getTicketPage, purchaseTicket, ticketCallback } from '../controllers/event';
 import { errorHandler } from '../middleware';
 
 router.get('/', errorHandler(getEvent));
@@ -23,5 +23,13 @@ router.get('/:id/edit', isEventOwner, errorHandler(getEdit));
 router.put('/:id', isEventOwner, errorHandler(putEvent));
 
 router.delete('/:id', errorHandler(deleteEvent));
+
+router.post('/:id/ticket', isLoggedIn, isEventOwner, errorHandler(postTicket));
+
+router.get('/:id/ticket/:ticket_id', errorHandler(getTicketPage));
+
+router.post('/:id/ticket/:ticket_id', errorHandler(purchaseTicket));
+
+router.get('/paystack/callback', ticketCallback);
 
 export default router;

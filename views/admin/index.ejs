@@ -111,6 +111,43 @@
             </div>
         </div>
     </section>
+    <% if(donate) { %>
+        <section id="users-list" class="mt-5 container bg-dark py-4">
+            <div class="card text-center bg-dark text-white mb-3">
+                <div class="card-body">
+                    <h3>Latest supporters</h3>
+                    <div class="table-responsive">
+                        <table class="table table-striped text-white">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th>Reference</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Amount Donated</th>
+                                    <th>Date Payed</th>
+                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                
+                                <% for(var i = donate.length - 1; i >= 0; i --) {%>
+                                    <tr>
+                                        <td><%=donate[i].reference%></td>
+                                        <td><%=donate[i].full_name%></td>
+                                        <td><%=donate[i].email%></td>
+                                        <td><%=donate[i].amount%></td>
+                                        <td><%=donate[i].datePayed.toDateString()%></td>
+                                    </tr>
+                                <%}%>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <a href="#" class="btn btn-outline-light btn-sm">View</a>
+                </div>
+            </div>
+        </section>
+    <%}%>
 
     <!-- BLOG MODAL -->
     <div class="modal fade" id="addPostModal">

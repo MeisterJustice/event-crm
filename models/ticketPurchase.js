@@ -1,6 +1,6 @@
-let mongoose;_4de‍.x([["default",()=>_4de‍.o]]);_4de‍.w("mongoose",[["default",["mongoose"],function(v){mongoose=v}]]);
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
-const donateSchema = new Schema({
+const ticketPurchaseSchema = new Schema({
     full_name: {
         type: String,
         required: true
@@ -16,7 +16,8 @@ const donateSchema = new Schema({
     reference: {
         type: String,
         required: true
-    }
+    },
+    datePayed: {type: Date, default: Date.now}
 });
 
-_4de‍.d(mongoose.model("Donate", donateSchema));
+export default mongoose.model("TicketPurchase", ticketPurchaseSchema);

@@ -58,28 +58,24 @@ export const donate = (req, res, next) => {
     });
 }
 
-export const getCallback = (req, res, next) => {
-  const ref = req.query.reference;
-    verifyPayment(ref, (error,body)=>{
+export const getCallback = async(req, res, next) => {
+  const ref = await req.query.reference;
+    await verifyPayment(ref, (error,body)=>{
         if(error){
             //handle errors appropriately
             console.log(error)
             return res.redirect('/error');
         }
         const response = JSON.parse(body);
-        req.body.reference = response.data.reference;
-        req.body.amount = response.data.amount
-        req.body.full_name = response.data.full_name;
-        req.body.email = response.data.customer.email;
-        console.log(response.data)
-        Donor.create(req.body).then((donor)=>{
-            if(donor){
-                // res.redirect('/receipt/'+donor._id);
-                res.redirect('/event');
-            }
-        }).catch((e)=>{
-            res.redirect('/admin');
-        })
+        console.log(response);
+        const data = [response.data.reference, response.data.amount / 100, response.data.customer.email, response.data.metadata.full_name]
+       
+        const [reference, amount, email, full_name] = data;
+        const newDonor = {reference, amount, email, full_name}
+        const donor = new Donor(newDonor)
+        donor.save();
+        res.redirect('/admin');
+        
     })
 }
 

@@ -19,7 +19,7 @@ export const isEventOwner = async(req, res, next) => {
 			res.locals.event = event;
 			return next();
 		}
-		req.flash('error', 'Access denied');
+		req.flash('error', 'Access denied!');
 		res.redirect('back');
 }
 

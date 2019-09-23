@@ -2,17 +2,20 @@ import User from '../models/user';
 import Blog from '../models/blog';
 import Event from '../models/event';
 import Email from '../models/email-signup';
+import Donate from '../models/donate';
 
 export const getAdmin = async (req, res, next) => {
     let users = await User.find({});
     let blogs = await Blog.find({});
     let events = await Event.find({});
     let emails = await Email.find({});
+    let donate = await Donate.find({});
     res.render("admin/index", {
         users,
         blogs,
         events,
-        emails
+        emails,
+        donate
     }); 
 }
 
