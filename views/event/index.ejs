@@ -25,6 +25,9 @@
         <div>
             <a href="/event/<%=event.id%>">see more</a>
         </div>
+        <%if(event.author) { %>
+            by <a href="/users/<%=event.author.id%>"><%=event.author.username%></a>
+        <%}%>
     </div>
 <% }) %>
 

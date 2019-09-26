@@ -1,0 +1,26 @@
+<form action="/event/<%=event.id%>/ticket/<%=ticket.id%>" method="post">
+    <input type="text" name="full_name" placeholder="name">
+    <input type="email" name="email" placeholder="name">
+    <label>Regular <%=ticket.regularAmount%></label>
+    <input type="radio" class="ticket-purchase" value="<%=ticket.regularAmount%>">
+    <label>Couple <%=ticket.coupleAmount%></label>
+    <input type="radio" class="ticket-purchase" value="<%=ticket.coupleAmount%>">
+    <label>VIPCouple <%=ticket.vipAmount%></label>
+    <input type="radio" class="ticket-purchase" value="<%=ticket.vipAmount%>">
+    <input style="visibility: hidden;" id="amount" type="number" name="amount">
+    <button>pay</button>
+</form>
+
+<script>
+    (function (){
+    var radios = document.getElementsByClassName('ticket-purchase');
+    var amount = document.getElementById('amount');
+    for(var i = 0; i < radios.length; i++){
+        radios[i].onclick = function(){
+            amount.value = Number(this.value);
+            console.log(amount.value)
+        }
+    }
+})();
+
+</script>

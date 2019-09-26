@@ -64,9 +64,9 @@ router.post("/login", errorHandler(postLogin));
 
 router.get("/logout", errorHandler(getLogout));
 
-router.get('/profile', isLoggedIn, errorHandler(getProfile));
+router.get('/users/:id', errorHandler(getProfile));
 
-router.put('/profile', isLoggedIn, upload.single('image'), errorHandler(isValidPassword), errorHandler(changePassword), errorHandler(updateProfile) );
+router.put('/users/:id', isLoggedIn, upload.single('image'), errorHandler(isValidPassword), errorHandler(changePassword), errorHandler(updateProfile) );
 
 router.get('/forgot-password', forgotPassword);
 
