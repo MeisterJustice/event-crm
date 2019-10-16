@@ -25,11 +25,18 @@ const app = express();
 const server = createServer(app);
 
 
-mongoose.connect('mongodb://localhost:27017/event-crm', {
+mongoose.set("debug", true);
+// CONNECT TO MONGODB
+mongoose.connect('mongodb+srv://meister:Justicee1155@event-nbrxk.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
-    useCreateIndex: true,
-    useFindAndModify: false,
+    useCreateIndex: true
+}).then(() => {
+    console.log("Connected to DB");
+}).catch(err => {
+    console.log("ERROR: ", err.message);
 });
+
+mongoose.Promise = Promise;
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
