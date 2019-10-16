@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate';
+var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 const Schema = mongoose.Schema;
 const eventSchema = new Schema({
     title: String,
@@ -45,4 +45,4 @@ const eventSchema = new Schema({
     },
 })
 eventSchema.plugin(mongoosePaginate);
-export default mongoose.model("Event", eventSchema);
+module.exports = mongoose.model("Event", eventSchema);

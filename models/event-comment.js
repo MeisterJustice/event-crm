@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const eventCommentSchema = new Schema({
     email: String,
@@ -6,4 +6,4 @@ const eventCommentSchema = new Schema({
     description: String,
     dateCreated: {type: Date, default: Date.now}
 })
-export default mongoose.model("EventComment", eventCommentSchema);
+module.exports = mongoose.model("EventComment", eventCommentSchema);

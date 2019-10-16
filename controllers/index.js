@@ -1,33 +1,33 @@
 require('dotenv').config()
-import User from '../models/user';
-import Event from '../models/event';
-import Blog from '../models/blog';
-import TicketPurchase from '../models/ticketPurchase';
-import Email from '../models/email-signup';
-import Donor from '../models/donate';
-import passport from 'passport';
-import requestt from 'superagent';
-import request from 'request';
-import _ from 'lodash';
-import util from 'util';
+var User = require('../models/user');
+var Event = require('../models/event');
+var Blog = require('../models/blog');
+var TicketPurchase = require('../models/ticketPurchase');
+var Email = require('../models/email-signup');
+var Donor = require('../models/donate');
+var passport = require('passport');
+var requestt = require('superagent');
+var request = require('request');
+var _ = require('lodash');
+var util = require('util');
 const { cloudinary } = require('../cloudinary');
-import {deleteProfileImage} from '../middleware';
-import crypto from 'crypto';
-import sgMail from '@sendgrid/mail';
+var {deleteProfileImage} = require('../middleware');
+var crypto = require('crypto');
+var sgMail = require('@sendgrid/mail');
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const {initializePayment, verifyPayment} = require('../config/paystack')(request);
 
-export const getIndex = async(req, res, next) => {
+exports.getIndex = async(req, res, next) => {
   let blog = await Blog.find({});
   let event = await Event.find({});
   res.render('index', {blog, event});
 }
 
-export const privacy = async(req, res, next) => {
+exports.privacy = async(req, res, next) => {
   res.render('privacy');
 }
 
-export const postForm = async (req, res, next) => {
+exports.postForm = async (req, res, next) => {
   const msg = {
     to: 'thechiefje@gmail.com',
     from: req.body.email,
@@ -41,7 +41,7 @@ export const postForm = async (req, res, next) => {
   res.redirect('/');
 }
 
-export const donate = (req, res, next) => {
+exports.donate = (req, res, next) => {
   const form = _.pick(req.body,['amount','email','full_name']);
     form.metadata = {
         full_name : form.full_name
@@ -59,7 +59,7 @@ export const donate = (req, res, next) => {
     });
 }
 
-export const getCallback = async(req, res, next) => {
+exports.getCallback = async(req, res, next) => {
   const ref = await req.query.reference;
     await verifyPayment(ref, (error,body)=>{
         if(error){
@@ -80,7 +80,7 @@ export const getCallback = async(req, res, next) => {
     })
 }
 
-export const emailSignup = async (req, res, next) => {
+exports.emailSignup = async (req, res, next) => {
   // save to database
   let userEmail = await Email.create(req.body);
   console.log(`${req.body.email} just signed up`);
@@ -112,21 +112,21 @@ export const emailSignup = async (req, res, next) => {
     });
 }
 
-export const getFacebookLogin = passport.authenticate('facebook', {
+exports.getFacebookLogin = passport.authenticate('facebook', {
   scope: ['email']
 });
 
-export const postFacebookLogin = passport.authenticate('facebook', {
+exports.postFacebookLogin = passport.authenticate('facebook', {
   successRedirect: '/',
   failureRedirect: '/login',
   session: false
 })
 
-export const getRegister = async (req, res, next) => {
+exports.getRegister = async (req, res, next) => {
   res.render("auth/register");
 }
 
-export const postRegister = async (req, res, next) => {
+exports.postRegister = async (req, res, next) => {
   try {
 		if (req.file) {
 			const { secure_url, public_id } = req.file;
@@ -162,11 +162,11 @@ export const postRegister = async (req, res, next) => {
 	}
 }
 
-export const getLogin = async (req, res, next) => {
+exports.getLogin = async (req, res, next) => {
   res.render("auth/login");
 }
 
-export const postLogin = async (req, res, next) => {
+exports.postLogin = async (req, res, next) => {
   const {
     username,
     password
@@ -188,13 +188,13 @@ export const postLogin = async (req, res, next) => {
   });
 }
 
-export const getLogout = async (req, res, next) => {
+exports.getLogout = async (req, res, next) => {
   req.logout();
   req.flash("success", "Logged you out!");
   res.redirect("/");
 }
 
-export const getProfile = async (req, res, next) => {
+exports.getProfile = async (req, res, next) => {
   let user = await User.findById(req.params.id);
   let event = await Event.find().where('author.id').equals(user._id).exec();
   let total = 0;
@@ -206,7 +206,7 @@ export const getProfile = async (req, res, next) => {
   res.render('profile/index', {user, event});
 }
 
-export const updateProfile = async (req, res, next) => {
+exports.updateProfile = async (req, res, next) => {
   const {
 		username,
     email,
@@ -236,7 +236,7 @@ export const updateProfile = async (req, res, next) => {
 }
 
 
-export const getTicketShow = async (req, res, next) => {
+exports.getTicketShow = async (req, res, next) => {
   let user = await User.findById(req.params.id);
   let event = await Event.findById(req.params.ticket_id);
   let ticket = await TicketPurchase.find().where('eventId.id').equals(event._id).exec();
@@ -245,11 +245,11 @@ export const getTicketShow = async (req, res, next) => {
 }
 
 
-export const forgotPassword = async (req, res, next) => {
+exports.forgotPassword = async (req, res, next) => {
   res.render('auth/forgot');
 }
 
-export const putForgotPassword = async (req, res, next) => {
+exports.putForgotPassword = async (req, res, next) => {
   const token = await crypto.randomBytes(20).toString('hex');
 
   const user = await User.findOne({
@@ -282,7 +282,7 @@ export const putForgotPassword = async (req, res, next) => {
   res.redirect('/forgot-password');
 }
 
-export const resetPassword = async (req, res, next) => {
+exports.resetPassword = async (req, res, next) => {
   const {
     token
   } = req.params;
@@ -301,7 +301,7 @@ export const resetPassword = async (req, res, next) => {
   });
 }
 
-export const putResetPassword = async (req, res, next) => {
+exports.putResetPassword = async (req, res, next) => {
   const {
     token
   } = req.params;

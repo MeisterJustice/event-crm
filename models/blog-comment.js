@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const blogCommentSchema = new Schema({
     email: String,
@@ -10,4 +10,4 @@ const blogCommentSchema = new Schema({
     },
     dateCreated: {type: Date, default: Date.now}
 })
-export default mongoose.model("BlogComment", blogCommentSchema);
+module.exports = mongoose.model("BlogComment", blogCommentSchema);

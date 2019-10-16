@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+var mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const donateSchema = new Schema({
     full_name: {
@@ -20,4 +20,4 @@ const donateSchema = new Schema({
     datePayed: {type: Date, default: Date.now}
 });
 
-export default mongoose.model("Donate", donateSchema);
+module.exports = mongoose.model("Donate", donateSchema);

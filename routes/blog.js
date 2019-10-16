@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
-import {
+var {
     getBlog,
     showBlog
-} from '../controllers/blog';
-import { errorHandler } from '../middleware';
-import { postComment } from '../controllers/blog-comment';
+} = require('../controllers/blog');
+var { errorHandler } = require('../middleware');
+var { postComment } = require('../controllers/blog-comment');
 
 
 router.get('/', errorHandler(getBlog));
@@ -14,4 +14,4 @@ router.get('/:id', errorHandler(showBlog))
 
 router.post('/:id', errorHandler(postComment));
 
-export default router;
+module.exports = router;

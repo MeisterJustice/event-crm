@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
-import { eventComment, deleteEvent } from '../controllers/event-comment';
-import { errorHandler } from '../middleware';
+var { eventComment, deleteEvent } = require('../controllers/event-comment');
+var { errorHandler } = require('../middleware');
 
 
 router.post('/', errorHandler(eventComment));
 
 router.delete('/:event_comment', errorHandler(deleteEvent));
 
-export default router;
+module.exports = router;

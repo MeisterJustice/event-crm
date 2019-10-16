@@ -1,7 +1,7 @@
-import Event from '../models/event';
-import EventComment from '../models/event-comment';
+var Event = require('../models/event');
+var EventComment = require('../models/event-comment');
 
-export const eventComment = async(req, res, next) => {
+exports.eventComment = async(req, res, next) => {
   let event = await Event.findById(req.params.id);
   let comment = await EventComment.create(req.body);
   await comment.save();
@@ -11,7 +11,7 @@ export const eventComment = async(req, res, next) => {
   res.redirect(`/event/${event.id}`);
 }
 
-export const deleteEvent = async(req, res, next) => {
+exports.deleteEvent = async(req, res, next) => {
   let event = await Event.findById(req.params.id);
   await EventComment.findByIdAndRemove(req.params.event_comment);
   res.redirect(`/event/${event.id}`);

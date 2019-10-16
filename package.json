@@ -3,10 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node -r esm app.js",
-    "dev": "nodemon -r esm app.js",
-    "lint": "eslint .",
-    "lint:fix": "eslint. --fix"
+    "start": "node app.js"
   },
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.6.0",
@@ -18,7 +15,7 @@
     "dotenv": "^8.1.0",
     "ejs": "^2.6.2",
     "esm": "^3.2.25",
-    "express": "~4.16.1",
+    "express": "^4.17.1",
     "express-session": "^1.16.2",
     "faker": "^4.1.0",
     "http-errors": "~1.6.3",

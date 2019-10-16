@@ -1,9 +1,9 @@
-import User from '../models/user';
-import Event from '../models/event';
+var User = require('../models/user');
+var Event = require('../models/event');
 const { cloudinary } = require('../cloudinary');
 
 
-export const isLoggedIn = (req, res, next) => {
+exports.isLoggedIn = (req, res, next) => {
     if(req.isAuthenticated()){
         return next();
     }
@@ -13,7 +13,7 @@ export const isLoggedIn = (req, res, next) => {
 }
 
 
-export const isEventOwner = async(req, res, next) => {
+exports.isEventOwner = async(req, res, next) => {
     let event = await Event.findById(req.params.id);
 		if (event.author.id.equals(req.user._id)) {
 			res.locals.event = event;
@@ -23,7 +23,7 @@ export const isEventOwner = async(req, res, next) => {
 		res.redirect('back');
 }
 
-export const checkIfUserExists = async (req, res, next) => {
+exports.checkIfUserExists = async (req, res, next) => {
     let emailExists = await User.findOne({'email': req.body.email});
     let userNameExists = await User.findOne({'username': req.body.username});
     if(emailExists) {
@@ -37,7 +37,7 @@ export const checkIfUserExists = async (req, res, next) => {
     next();
 }
 
-export const isValidPassword = async (req, res, next) => {
+exports.isValidPassword = async (req, res, next) => {
     const { user } = await User.authenticate()(req.user.username, req.body.currentPassword)
     if(user) { 
         res.locals.user = user;
@@ -48,7 +48,7 @@ export const isValidPassword = async (req, res, next) => {
     }
 }
 
-export const changePassword = async (req, res, next) => {
+exports.changePassword = async (req, res, next) => {
     const {
 		newPassword,
 		passwordConfirmation

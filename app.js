@@ -1,25 +1,25 @@
 require('dotenv').config()
-import createError from 'http-errors';
-import express from 'express';
-import { createServer } from 'http';
-import path from 'path';
-import favicon from 'serve-favicon';
-import cookieParser from 'cookie-parser';
-import flash from 'connect-flash';
-import mongoose from 'mongoose';
-import logger from 'morgan';
-import methodOverride from 'method-override';
-import passport from 'passport';
-// import seedPosts from './seeds';
+var createError = require('http-errors');
+var express = require('express');
+var { createServer } = require('http');
+var path = require('path');
+var favicon = require('serve-favicon');
+var cookieParser = require('cookie-parser');
+var flash = require('connect-flash');
+var mongoose = require('mongoose');
+var logger = require('morgan');
+var methodOverride = require('method-override');
+var passport = require('passport');
+// var seedPosts = require('./seeds';
 // seedPosts();
 
-// import routers
-import indexRouter from './routes/';
-import adminRouter from './routes/admin';
-import blogRouter from './routes/blog';
-import eventRouter from './routes/event';
-import blogCommentRouter from './routes/blog-comment';
-import eventCommentRouter from './routes/event-comment'
+// var routers
+var indexRouter = require('./routes');;
+var adminRouter = require('./routes/admin');;
+var blogRouter = require('./routes/blog');;
+var eventRouter = require('./routes/event');;
+var blogCommentRouter = require('./routes/blog-comment');;
+var eventCommentRouter = require('./routes/event-comment');
 
 const app = express();
 const server = createServer(app);

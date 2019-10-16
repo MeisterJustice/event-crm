@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import mongoosePaginate from 'mongoose-paginate';
+var mongoose = require('mongoose');
+var mongoosePaginate = require('mongoose-paginate');
 const Schema = mongoose.Schema;
 const blogSchema = new Schema({
     title: String,
@@ -23,4 +23,4 @@ const blogSchema = new Schema({
 
 blogSchema.plugin(mongoosePaginate);
 
-export default mongoose.model("Blog", blogSchema);
+module.exports = mongoose.model("Blog", blogSchema);
