@@ -16,6 +16,7 @@ import {
   getLogout,
   getProfile,
   updateProfile,
+  getTicketShow,
   postForm,
   emailSignup,
   donate,
@@ -67,6 +68,8 @@ router.get("/logout", errorHandler(getLogout));
 router.get('/users/:id', errorHandler(getProfile));
 
 router.put('/users/:id', isLoggedIn, upload.single('image'), errorHandler(isValidPassword), errorHandler(changePassword), errorHandler(updateProfile) );
+
+router.get('/users/:id/:ticket_id', errorHandler(getTicketShow));
 
 router.get('/forgot-password', forgotPassword);
 

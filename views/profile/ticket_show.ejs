@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
+	<!-- Fonts and icons -->
+	<script src="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/js/plugin/webfont/webfont.min.js"></script>
+
+	<!-- CSS Files -->
+	<link rel="stylesheet" href="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/css/atlantis.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <title>event | profile</title>
+</head>
+
+<body>
+
+    <% include ../partials/profile-header %>
+    
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">All ticket purchases for event with title <%=event.title%></h3>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="basic-datatables" class="display table table-striped table-hover" >
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Name</th>
+                                    <th>Amount Payed</th>
+                                    <th>Reference</th>
+                                    <th>Date of Purchase</th>
+                                </tr>
+                            </thead>
+                            
+                            <tbody>
+                                <%for(var i = ticket.length - 1; i >= 0; i --) { %>
+                                    <%if(ticket[i]) {%>
+                                        <tr>
+                                            <td><%=i + 1%></td>
+                                            <td><%=ticket[i].full_name%></td>
+                                            <td><%=ticket[i].amount%></td>
+                                            <td><%=ticket[i].token%></td>
+                                            <td><%=ticket[i].datePayed.toDateString() %></td>
+                                        </tr>
+                                    <%}%>
+                                <%}%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+        <!--   Core JS Files   -->
+	<script src="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/js/core/jquery.3.2.1.min.js"></script>
+	<script src="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/js/core/popper.min.js"></script>
+	<script src="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/js/core/bootstrap.min.js"></script>
+	<!-- jQuery UI -->
+	<script src="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+	<script src="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/js/plugin/jquery-ui-touch-punch/jquery.ui.touch-punch.min.js"></script>
+	<!-- Bootstrap Toggle -->
+	<script src="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+	<!-- jQuery Scrollbar -->
+	<script src="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+	<!-- Datatables -->
+	<script src="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/js/plugin/datatables/datatables.min.js"></script>
+	<!-- Atlantis JS -->
+	<script src="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/js/atlantis.min.js"></script>
+	<!-- Atlantis DEMO methods, don't include it in your project! -->
+    <script src="http://themekita.com/demo-atlantis-bootstrap/livepreview/examples/assets/js/setting-demo2.js"></script>
+    
+	<script>
+		$(document).ready(function() {
+			$('#basic-datatables').DataTable({
+            });
+        });
+    </script>
+
+</body>
+
+</html>

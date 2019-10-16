@@ -22,6 +22,10 @@ const userSchema = new Schema({
         token: String,
         name: String,
         email: String
+    },
+    totalAmount: {
+        type: Number,
+        default: 0
     }
 })
 userSchema.plugin(passportLocalMongoose);

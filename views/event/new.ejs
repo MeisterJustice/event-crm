@@ -53,10 +53,57 @@
                         <input id="eventTime" type="text" name="eventTime" required class="d-inline">
                         <span tabindex="0" class="display-5 ml-3" role="button" data-toggle="popover" data-trigger="focus" data-content="event starts when and ends when. Example 4pm to 9pm">?</span>
                     </div>
+                    <br>
+                    <hr>
+                    <h4 class="text-white pb-4 pb-lg-0 text-center">__Sell tickets with us__</h4>
+                    <button type="button" style="font-size: 17px;" class="btn btn-info" data-toggle="modal" data-target="#terms">
+                        Check terms of service before use (important!)
+                    </button> 
+                    <hr>
+                    <div class="text-white pb-4 pb-lg-0">
+                        <label for="regularAmount" class="d-block mb-0 text-white mt-3"><h5>Regular Amount (&#8358;)</h5></label>
+                        <input id="regularAmount" type="number" name="regularAmount" class="d-inline">
+                        <span tabindex="0" class="display-5 ml-3" role="button" data-toggle="popover" data-trigger="focus" data-content="price for regulars">?</span>
+                    </div>
+                    <div class="text-white pb-4 pb-lg-0">
+                        <label for="coupleAmount" class="d-block mb-0 text-white mt-3"><h5>Couple Amount (&#8358;)</h5></label>
+                        <input id="coupleAmount" type="number" name="coupleAmount" class="d-inline">
+                        <span tabindex="0" class="display-5 ml-3" role="button" data-toggle="popover" data-trigger="focus" data-content="price for couples">?</span>
+                    </div>
+                    <div class="text-white pb-4 pb-lg-0">
+                        <label for="vipAmount" class="d-block mb-0 text-white mt-3"><h5>VIP Amount (&#8358;)</h5></label>
+                        <input id="vipAmount" type="number" name="vipAmount" class="d-inline">
+                        <span tabindex="0" class="display-5 ml-3" role="button" data-toggle="popover" data-trigger="focus" data-content="price for couples">?</span>
+                    </div>
+                    <div class="text-white pb-4 pb-lg-0">
+                        <label for="comment" class="d-block mb-0 text-white mt-3"><h5>Comment</h5></label>
+                        <textarea id="comment" name="ticketComment" class="d-inline" rows="5" ></textarea>
+                        <span tabindex="0" class="display-5 ml-3" role="button" data-toggle="popover" data-trigger="focus" data-content="a little comment for your ticket purchasers (required)">?</span>
+                    </div>
                 </div>
             </div>
         </div>
     </form>
+    <!-- TERMS OF SERVICE MODAL -->
+    <div class="modal fade" id="terms" tabindex="-1" role="dialog" aria-labelledby="termsTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="termsTitle">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              
+            </div>
+          </div>
+        </div>
+    </div>
 </section>
 
 <script src="https://cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>

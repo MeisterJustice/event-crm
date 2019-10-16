@@ -17,6 +17,13 @@ const ticketPurchaseSchema = new Schema({
         type: String,
         required: true
     },
+    token: String,
+    eventId: {
+        id: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Event"
+        }
+    },
     datePayed: {type: Date, default: Date.now}
 });
 

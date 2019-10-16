@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Success</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: black;
+            color: white;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .thank-you {
+            text-align: center;
+        }
+
+        .thank-you img {
+            max-width: 300px;
+        }
+
+        .thank-you p {
+            font-size: 16px;
+        }
+
+        .thank-you .signature {
+            max-width: 150px;
+            margin-bottom: 30px;
+        }
+
+        .thank-you a {
+            padding: 20px  20px;
+            border: none;
+            color: #fff;
+            border-radius: 100px;
+            background-color: rgb(247, 64, 9);
+            text-decoration: none;
+        }
+        
+        .thank-you .a {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="thank-you">
+
+            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/thank_you_pic.jpg" alt="" />
+
+            <h1>Thank you <%=purchase.full_name.toUpperCase()%></h1>
+
+            <p>You should be getting your invoice emailed to you right now!. Check your SPAM if you don't see any email
+                from us in your inbox.</p>
+            <br>
+            <br>
+            <h2>REFERENCE NUMBER : <%=purchase.token%></h2>
+            <p>
+                Your reference number has been sent to the event planner, <%=event.author.username%>. Each reference number is unique and attached
+                to a name.
+            </p>
+            <p>
+                Your unique reference number helps validate that you actually payed for the ticket. Please have your
+                reference number in hand while coming for the event.
+            </p>
+            <p>Don't panic if you lose it, it'll always be in your email inbox.</p>
+
+
+            <!-- <p>I'll see you at Webster Hall on March 20th at 8:00pm!</p> -->
+
+            <img class="signature" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/7022/alow_sig.png"
+                alt="A-Low Signature" />
+
+            <div class="a">
+                <a href="/">Go to main page</a>
+                <a href="/event/<%=event._id%>">Go back to event</a>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+
+</html>

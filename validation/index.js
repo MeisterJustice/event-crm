@@ -15,7 +15,7 @@ export const isLoggedIn = (req, res, next) => {
 
 export const isEventOwner = async(req, res, next) => {
     let event = await Event.findById(req.params.id);
-		if (event.author.equals(req.user._id)) {
+		if (event.author.id.equals(req.user._id)) {
 			res.locals.event = event;
 			return next();
 		}

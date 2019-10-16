@@ -2,8 +2,8 @@ require('dotenv').config()
 import User from '../models/user';
 import Event from '../models/event';
 import Blog from '../models/blog';
+import TicketPurchase from '../models/ticketPurchase';
 import Email from '../models/email-signup';
-import Ticket from '../models/ticket';
 import Donor from '../models/donate';
 import passport from 'passport';
 import requestt from 'superagent';
@@ -197,8 +197,13 @@ export const getLogout = async (req, res, next) => {
 export const getProfile = async (req, res, next) => {
   let user = await User.findById(req.params.id);
   let event = await Event.find().where('author.id').equals(user._id).exec();
-  let ticket = await Ticket.find({});
-  res.render('profile/index', {user, event, ticket});
+  let total = 0;
+  for(var i = event.length -1; i >= 0; i--) {
+    total += event[i].totalEventAmount;
+  }
+  user.totalAmount = total;
+  await user.save();
+  res.render('profile/index', {user, event});
 }
 
 export const updateProfile = async (req, res, next) => {
@@ -213,7 +218,11 @@ export const updateProfile = async (req, res, next) => {
 	} = req.body;
 	const user = await User.findById(req.params.id);
 	if (username) user.username = username;
-	if (email) user.email = email;
+  if (email) user.email = email;
+  if (firstName) user.firstName = firstName;
+  if (lastName) user.lastName = lastName;
+  if (state) user.state = state;
+  if (city) user.city = city;
 	if (req.file) {
 		if (user.image.public_id) await cloudinary.v2.uploader.destroy(user.image.public_id);
 		const { secure_url, public_id } = req.file;
@@ -223,7 +232,16 @@ export const updateProfile = async (req, res, next) => {
 	const login = util.promisify(req.login.bind(req));
 	await login(user);
 	req.flash('success', 'Profile successfully updated!');
-	res.redirect(`users/${user.id}`);
+	res.redirect(`back`);
+}
+
+
+export const getTicketShow = async (req, res, next) => {
+  let user = await User.findById(req.params.id);
+  let event = await Event.findById(req.params.ticket_id);
+  let ticket = await TicketPurchase.find().where('eventId.id').equals(event._id).exec();
+  console.log(ticket);
+  res.render('profile/ticket_show', {ticket, event});
 }
 
 

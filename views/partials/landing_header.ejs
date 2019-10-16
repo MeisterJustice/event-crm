@@ -28,7 +28,7 @@
                 <a class="nav-link my-auto ml-auto" href="/register">register</a>
                 <a class="nav-link my-auto" href="/login">login</a>
             <%} else { %>
-                <a href="/profile" class="my-auto ml-auto text-dark">welcome <%=currentUser.username%></a>
+                <a href="/users/<%=currentUser.id%>" class="my-auto ml-auto text-dark">welcome <%=currentUser.username%></a>
                 <a class="nav-link my-auto" href="/logout">logout</a>
             <%}%>
             <form class="form-inline">

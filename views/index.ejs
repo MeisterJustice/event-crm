@@ -165,26 +165,30 @@
     </div>
     <div class="row wow fadeInUp container-fluid" data-wow-duration="1s" data-wow-delay=".5s">
         <% for(var i = event.length - 1; i >= event.length - 4; i--) {%>
-        <div class="col-12 event-op col-lg-6 mx-md-auto mt-3">
-            <a href="/event/<%=event[i].id%>" class="event-row">
-                <div class="card mx-auto mb-3" style="max-width: 700px;">
-                    <div class="row no-gutters">
-                        <div class="col-md-4">
-                            <img src="<%=event[i].images[1]%>" height="100%"
-                                class="card-img lazy" alt="<%=event[i].title%> image">
-                        </div>
-                        <div class="col-md-8 cardd">
-                            <div class="card-body">
-                                <h4 class="card-title text-dark"><%=event[i].title%></h4>
-                                <p class="card-text text-justify"><%-event[i].description.substring(0, 200)%>
-                                </p>
-                                <p class="card-text"><small class="text-muted">posted on <%=event[i].dateCreated.toDateString()%></small></p>
+            <%if(event[i]) {%>
+                <div class="col-12 event-op col-lg-6 mx-md-auto mt-3">
+                    <a href="/event/<%=event[i].id%>" class="event-row">
+                        <div class="card mx-auto mb-3" style="max-width: 700px;">
+                            <div class="row no-gutters">
+                                <div class="col-md-4">
+                                    <%if(event[i].images[0]) {%>
+                                        <img src="<%=event[i].images[0].url%>" height="100%"
+                                        class="card-img lazy" alt="<%=event[i].title%> image">
+                                    <%}%>
+                                </div>
+                                <div class="col-md-8 cardd">
+                                    <div class="card-body">
+                                        <h4 class="card-title text-dark"><%=event[i].title%></h4>
+                                        <p class="card-text text-justify"><%-event[i].description.substring(0, 200)%>
+                                        </p>
+                                        <p class="card-text"><small class="text-muted">posted on <%=event[i].dateCreated.toDateString()%></small></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
-            </a>
-        </div>
+            <%}%>
         <%}%>
     </div>
     <div class="text-left mt-2 container-fluid">

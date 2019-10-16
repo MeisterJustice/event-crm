@@ -1,0 +1,143 @@
+
+
+	<section id="navbar" class="d-none profile-nav d-lg-block">
+		<nav id="profile-nav" style="background-color: #34c6d3" class="nav px-5 nav-pills nav-justified">
+			<a class="nav-link my-auto" href="/">home</a>
+			<a class="nav-link my-auto" href="#">contact</a>
+			<a class="nav-link my-auto" href="#">about</a>
+			<a class="nav-link my-auto" href="/event">event</a>
+			<a class="nav-link my-auto" href="/blog">blog</a>
+
+			<div style="cursor: pointer;" class="nav-link my-auto ml-auto" data-toggle="modal"
+				data-target="#exampleModal">
+				<i class="fas fa-hand-holding-usd fa-2x"></i> donate
+			</div>
+			<% if(!currentUser) { %>
+			<a class="nav-link my-auto ml-auto" href="/register">register</a>
+			<a class="nav-link my-auto" href="/login">login</a>
+			<%} else { %>
+			<a href="/profile" class="my-auto ml-auto text-dark">welcome <%=currentUser.username%></a>
+			<a class="nav-link my-auto" href="/logout">logout</a>
+			<%}%>
+			<form class="form-inline">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				<a href="" class="nav-link">
+					<i class="fab fa-searchengin fa-2x"></i>
+				</a>
+			</form>
+		</nav>
+	</section>
+			
+	<div id="menu-bar" class="d-lg-none">
+		<div id="menu" onclick="onClickMenu()">
+			<div id="bar1" class="bar"></div>
+			<div id="bar2" class="bar"></div>
+			<div id="bar3" class="bar"></div>
+		</div>
+		<ul class="navv" id="nav">
+			<li><a href="/">home</a></li>
+			<li><a href="#">about</a></li>
+			<li><a href="#">contact</a></li>
+			<li><a href="/event">event</a></li>
+			<li><a href="/blog">blog</a></li>
+			<% if(!currentUser) { %>
+			<li><a href="/register">register</a></li>
+			<li><a href="/login">login</a></li>
+			<%} else { %>
+			<li><a href="/profile">profile</a></li>
+			<li><a href="/logout">logout</a></li>
+			<%}%>
+		</ul>
+	</div>
+	<div class="menu-bg d-lg-none" id="menu-bg"></div>
+			
+		<div class="container">
+			<% if(error && error.length > 0){ %>
+			<div class="alert alert-danger" role="alert">
+				<%=error%>
+			</div>
+			<% } %>
+			<% if(success && success.length > 0){ %>
+			<div class="alert alert-success" style="z-index: 999" role="alert">
+				<%=success%>
+			</div>
+			<% } %>
+			</div>
+
+
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title ml-auto">Buy us a coffee</h5>
+
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<h6 class="modal-title d-block mt-2 text-center">We need all the support we can get</h6>
+						<div class="modal-body">
+
+							<form action="/pay" method="post">
+								<div class="row">
+									<div class="col-12">
+										<input type="text" name="full_name" placeholder="full name"
+											class="form-control">
+									</div>
+									<div class="col-12 mt-2">
+										<input type="email" name="email" placeholder="email" class="form-control">
+									</div>
+									<div class="col-12 mt-2">
+										<input type="number" name="amount" placeholder="amount" class="form-control">
+									</div>
+								</div>
+								<div class="modal-footer">
+									<div class="btn btn-secondary" data-dismiss="modal">Close</div>
+									<button class="btn btn-primary">Buy!</button>
+								</div>
+							</form>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+
+
+			<div id="profile">
+				<div class="container">
+					<div class="jumbo py-5">
+						<% if(!currentUser) { %>
+
+						<div class="d-flex flex-column align-items-center">
+							<div>
+								<h4 class="font-weight bold text-center">Create your own Ticket-Guy profile</h4>
+							</div>
+							<div>
+								<p class="text-center">Sign up for your own profile on Ticket-Guy, the best place to
+									post events, manage tickets, and build your web presence</p>
+							</div>
+							<div>
+								<a href="/register" class="btn btn-success text-center btn-round">Sign Up</a>
+							</div>
+						</div>
+						<%}%>
+					<% if(currentUser) { %>
+
+						<div class="d-flex flex-column align-items-center">
+							<div>
+								<h4 class="font-weight bold text-center">Get all the information you need on your
+									profile page</h4>
+							</div>
+							<div>
+								<p class="text-center">Only you can see the details of tickets you create including
+									purchases and amount generated.</p>
+							</div>
+							<div>
+								<a href="/event/new" class="btn btn-success text-center btn-round">Create Event</a>
+							</div>
+						</div>
+						<%}%>
+				</div>

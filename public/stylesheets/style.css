@@ -952,9 +952,12 @@ p {
 }
 
 #profile .profile-photo {
-    height: 300px;
-    width: 90%;
-    border: 1px solid black;
+    height: 350px;
+    width: 80%;
+}
+
+#profile .profile-image {
+    object-fit: cover;
 }
 
 @media (max-width: 991px) {
@@ -966,50 +969,50 @@ p {
 }
 
 @media (max-width: 1025px) {
-    #profile #border {
-        margin-top: -300px;
+    #border {
+        margin-top: 0;
     }
 }
 
 
 @media (max-width: 760px) {
-    #profile #border {
+    #border {
         margin-top: 300px;
     }
 }
 
 @media (max-width: 500px) {
-    #profile #border {
+    #border {
         margin-top: 400px;
     }
 }
 
 @media (max-width: 415px) {
-    #profile #border {
+    #border {
         margin-top: 550px;
     }
 }
 
 @media (max-width: 414px) {
-    #profile #border {
+    #border {
         margin-top: 410px;
     }
 }
 
 @media (max-width: 380px) {
-    #profile #border {
+    #border {
         margin-top: 590px;
     }
 }
 
 @media (max-width: 377px) {
-    #profile #border {
+    #border {
         margin-top: 559px;
     }
 }
 
 @media (max-width: 322px) {
-    #profile #border {
+    #border {
         margin-top: 640px;
     }
 }
@@ -1017,7 +1020,7 @@ p {
 /*  */
 
 
-section#navbar.d-none.d-lg-block {
+section#navbar.d-none.profile-nav.d-lg-block {
     z-index: 0;
 }
 
@@ -1033,6 +1036,53 @@ section#navbar.d-none.d-lg-block {
     background: linear-gradient(to right, rgb(245, 248, 250), #E0EAFC);
 }
 
-nav.nav.px-5.nav-pills.nav-justified {
+nav#profile-nav.nav.px-5.nav-pills.nav-justified {
     margin-top: -50px;
+}
+
+
+/* =======================EVENT INDEX PAGE */
+#event-cards a:hover {
+    text-decoration: none;
+}
+
+/* #event-cards .card {
+    height: 200px;
+} */
+
+/* #event-cards .card:hover {
+    opacity: 0.8;
+    transition: .6s opacity ease;
+} */
+.card .overlay{
+    display: block;
+    content: "";
+    position:absolute;
+    top:0;
+    left:0;
+    background:rgba(0,0,0,0.8);
+    width:100%;
+    height:20%;
+    opacity: 0;
+    transition: all .6s ease-in-out;
+    z-index: 1;
+}
+
+
+#event-cards .card:hover .overlay {
+    opacity: 1;
+}
+
+.m-card-body{
+    z-index: 3;
+    position: absolute;
+    top:35px;
+    left:40px;
+    color:#fff;
+    display: none;
+}
+
+#event-cards .card:hover .m-card-body{
+    display: block; 
+    transition: all 1s ease-in-out;
 }
