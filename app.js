@@ -27,7 +27,7 @@ const server = createServer(app);
 
 mongoose.set("debug", true);
 // CONNECT TO MONGODB
-mongoose.connect('mongodb+srv://meister:Justicee1155@event-nbrxk.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://meister:@event-nbrxk.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useCreateIndex: true
 }).then(() => {
