@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
-var {
+import {
   getAdmin, getBlog, getUser, getCreateBlog, postBlog, getEvent, getCreateEvent, postEvent, getEditBlog, putBlog, deleteBlog, getEditEvent, putEvent, deleteEvent
-} = require('../controllers/admin');
-var { errorHandler } = require('../middleware');
+} from '../controllers/admin'
+import { errorHandler } from '../middleware';
 
 router.get('/', errorHandler(getAdmin));
 
@@ -37,4 +37,4 @@ router.put('/event/:event_id', errorHandler(putEvent));
 
 router.delete('/event/:event_id', errorHandler(deleteEvent));
 
-module.exports = router;
+export default router;

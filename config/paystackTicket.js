@@ -35,4 +35,4 @@ const paystack = (request) => {
     };
 }
 
-module.exports = paystack;
+module.exports = paystack

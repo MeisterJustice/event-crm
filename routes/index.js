@@ -4,7 +4,7 @@ const multer = require('multer');
 const { storage } = require('../cloudinary');
 const upload = multer({ storage });
 
-var {
+import {
   getIndex,
   privacy,
   getFacebookLogin,
@@ -25,18 +25,19 @@ var {
   putForgotPassword,
   resetPassword,
   putResetPassword
-} = require('../controllers/index');
+} from '../controllers/index';
 
-var {
+import {
   errorHandler
-} = require('../middleware');
-var {
+} from '../middleware';
+
+import {
   isLoggedIn,
   isEventOwner,
   checkIfUserExists,
   isValidPassword,
 	changePassword
-} = require('../validation/index');
+} from '../validation/index';
 
 router.get('/', errorHandler(getIndex));
 
@@ -78,4 +79,4 @@ router.get('/reset-password/:token', errorHandler(resetPassword));
 
 router.put('/reset-password/:token', errorHandler(putResetPassword));
 
-module.exports = router;
+export default router;

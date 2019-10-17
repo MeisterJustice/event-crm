@@ -1,6 +1,6 @@
-var passport = require('passport');
-var User = require('../models/user');
-var LocalStrategy = require('passport-local');
+import passport from 'passport';
+import User from '../models/user';
+import LocalStrategy from 'passport-local';
 
 module.exports = (passport) => {
     passport.use(User.createStrategy());

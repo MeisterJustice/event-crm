@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router({mergeParams: true});
-var { storage } = require('../cloudinary');
-var multer = require('multer');
+import { storage } from '../cloudinary';
+import multer from 'multer';
 const upload = multer({ storage });
-var {
+import {
     isLoggedIn,
     isEventOwner
-  } = require('../validation/index');
-var { getEvent, getCreateEvent, postEvent, showEvent, getEdit, putEvent, deleteEvent, purchaseTicket, ticketCallback } = require('../controllers/event');
-var { errorHandler } = require('../middleware');
+  } from '../validation/index';
+import { getEvent, getCreateEvent, postEvent, showEvent, getEdit, putEvent, deleteEvent, purchaseTicket, ticketCallback } from '../controllers/event';
+import { errorHandler } from '../middleware';
 
 router.get('/', errorHandler(getEvent));
 
@@ -30,4 +30,4 @@ router.post('/:id/ticket', errorHandler(purchaseTicket));
 
 router.get('/paystack/callback', ticketCallback);
 
-module.exports = router;
+export default router;

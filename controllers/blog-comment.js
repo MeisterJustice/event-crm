@@ -1,7 +1,7 @@
-var Blog = require('../models/blog');
-var BlogComment = require('../models/blog-comment');
+import Blog from '../models/blog';
+import BlogComment from '../models/blog-comment';
 
-exports.postComment = async(req, res, next) => {
+export const postComment = async(req, res, next) => {
   let blog = await Blog.findById(req.params.id);
   let comment = await BlogComment.create(req.body);
   await comment.save();
@@ -11,7 +11,7 @@ exports.postComment = async(req, res, next) => {
   res.redirect(`/blog/${blog.id}`);
 }
 
-exports.deleteComment = async(req, res, next) => {
+export const deleteComment = async(req, res, next) => {
   let blog = await Blog.findById(req.params.id);
   await BlogComment.findByIdAndRemove(req.params.blog_comment);
   res.redirect(`/blog/${blog.id}`);

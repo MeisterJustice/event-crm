@@ -1,7 +1,7 @@
-var passport = require('passport');
-var FacebookStrategy = require('passport-facebook');
-var User = require('../models/user');
-var configAuth = require('./auth');
+import passport from 'passport';
+import FacebookStrategy from 'passport-facebook';
+import User from '../models/user';
+import configAuth from './auth';
 
 
 

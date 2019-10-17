@@ -1,15 +1,15 @@
-var Event = require('../models/event');
-var Blog = require('../models/blog');
-var TicketPurchase = require('../models/ticketPurchase');
-var {cloudinary} = require('../cloudinary');
-var _ = require('lodash');
-var request = require('request');
-var sgMail = require('@sendgrid/mail');
-var crypto = require('crypto');
+import Event from '../models/event';
+import Blog from '../models/blog';
+import TicketPurchase from '../models/ticketPurchase';
+import {cloudinary} from '../cloudinary';
+import _ from 'lodash';
+import request from 'request';
+import sgMail from '@sendgrid/mail';
+import crypto from 'crypto';
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const {initializePayment, verifyPayment} = require('../config/paystackTicket')(request);
 
-exports.getEvent = async (req, res, next) => {
+export const getEvent = async (req, res, next) => {
     let event = await Event.paginate({}, {
         page: req.query.page || 1,
         limit: 12
@@ -20,11 +20,11 @@ exports.getEvent = async (req, res, next) => {
     });
 } 
 
-exports.getCreateEvent = async(req, res, next) => {
+export const getCreateEvent = async(req, res, next) => {
     res.render("event/new")
 }
 
-exports.postEvent = async(req, res, next) => {
+export const postEvent = async(req, res, next) => {
     
     let author = await {
         id: req.user.id,
@@ -68,34 +68,34 @@ exports.postEvent = async(req, res, next) => {
     res.redirect("/event");
 }
 
-exports.showEvent = async(req, res, next) => {
+export const showEvent = async(req, res, next) => {
     let latestBlog = await Blog.find({});
     let event = await Event.findById(req.params.id).populate('comments').exec();
     res.render("event/show", {event, latestBlog})
 }
 
-exports.getEdit = async(req, res, next) => {
+export const getEdit = async(req, res, next) => {
     let showEdit = await Event.findById(req.params.id);
     res.render("event/edit", {showEdit})
 }
 
-exports.putEvent = async(req, res, next) => {
+export const putEvent = async(req, res, next) => {
     let event = await Event.findByIdAndUpdate(req.params.id, req.body);
     res.redirect(`/event/${event.id}`);
 }
 
-exports.deleteEvent = async(req, res, next) => {
+export const deleteEvent = async(req, res, next) => {
     let event = await Event.findById(req.params.id);
     await Event.findByIdAndDelete();
     res.redirect("/event");
 }
 
-// exports.success = async(req, res, next) => {
+// export const success = async(req, res, next) => {
 //     let event = await Event.findById(req.params.id);
 //     res.render("event/success");
 // }
 
-exports.purchaseTicket = async(req, res, next) => {
+export const purchaseTicket = async(req, res, next) => {
     const event = await Event.findById(req.params.id);
     req.session.redirectToEvent = event;
     const form = await _.pick(req.body,['amount','email','full_name']);
@@ -115,7 +115,7 @@ exports.purchaseTicket = async(req, res, next) => {
       });
   }
   
-  exports.ticketCallback = async(req, res, next) => {
+  export const ticketCallback = async(req, res, next) => {
     const event = req.session.redirectToEvent;
     let eventId = await {
         id: event._id,

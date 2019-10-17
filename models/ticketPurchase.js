@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 const ticketPurchaseSchema = new Schema({
     full_name: {
@@ -27,4 +27,4 @@ const ticketPurchaseSchema = new Schema({
     datePayed: {type: Date, default: Date.now}
 });
 
-module.exports = mongoose.model("TicketPurchase", ticketPurchaseSchema);
+export default mongoose.model("TicketPurchase", ticketPurchaseSchema);
